@@ -9,7 +9,7 @@ import styles from "../../assets/app-header.module.css"
 
 const NavMenu = ({ children }) => {
     return (
-        <div className={`${styles.navMenu} mx-5 row p-0 `}>
+        <div className={`${styles.navMenu} row p-0 `}>
             {children}
         </div>
     )
@@ -20,7 +20,7 @@ const NavLink = ({ path, text, pressed, children }) => {
     return (
         <div className="col-md-auto">
             <a href={path} className="text_type_main-default text_color_primary">
-                <div className={`${styles.container} pt-4 pb-4 pl-5 pr-5`}>
+                <div className="pt-4 pb-4 pl-5 pr-5">
                     <i className="pr-2">{children}</i>
                     <span className={`text ${text_style}`}>{text}</span>
                 </div>
@@ -40,7 +40,7 @@ const Navigate = ({ children }) => {
 
 }
 
-function AppHeader() {
+const AppHeader = () => {
     return (
         <NavMenu>
             <Navigate>
