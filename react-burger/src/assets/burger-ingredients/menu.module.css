@@ -1,0 +1,10 @@
+.menu {
+    width: 600px;
+    position: relative;
+    flex-direction: column;
+    flex-grow: 1; /* Добавляем flex-grow: 1 для растяжимости контейнера */
+    min-height: 0;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+    scroll-padding: 32px;
+}
