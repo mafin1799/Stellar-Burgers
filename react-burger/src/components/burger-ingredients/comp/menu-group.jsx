@@ -1,6 +1,7 @@
 import { getTypeAlias } from "../../../utils/groupTypeAlias";
 import { MenuCard } from "./menu-card";
 import styles from "../../../assets/burger-ingredients/menu-group.module.css"
+
 export const MenuGroup = ({ type, data }) => { // Используйте деструктуризацию, чтобы получить type и data
     return (
         <div id={type}>

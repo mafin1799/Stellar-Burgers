@@ -2,9 +2,13 @@ a {
     text-decoration: none;
 }
 
-
 .navMenu {
+    display: flex;
     border: 2px solid #4C4CFF;
     background-color: #1C1C21; 
 }
 
+.navCenter{
+    display: flex;
+    align-items: center;
+  }

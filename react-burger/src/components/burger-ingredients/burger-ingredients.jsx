@@ -1,19 +1,23 @@
-import { stub } from "../../utils/data";
 import { Menu } from "./comp/menu";
 import { TabMenu } from "./comp/tab-menu";
-import { useState } from "react";
-export const BurgerIngredients = () => {
-    const [currentTab, setCurrentTab] = useState("buns"); // Используем стейт для хранения текущей вкладки
-  
-    const handleTabChange = (tabValue) => {
-        setCurrentTab(tabValue);
-      };
+import React from "react";
+import styles from "../../assets/styles.module.css"
+export const BurgerIngredients = (props) => {
+  const [currentTab, setCurrentTab] = React.useState("buns"); // Используем стейт для хранения текущей вкладки
 
-    return (
-    <div className="col w-50">
-      <TabMenu onTabChange={handleTabChange}/>
-      <Menu items={stub} currentTab={currentTab}/>
-    </div>
+  console.log(props)
+  const handleTabChange = (tabValue) => {
+    setCurrentTab(tabValue);
+  };
+
+  return (
+    <>
+      {
+        <div className={`${styles.col}`} style={{ marginLeft: 'auto', marginRight: 'calc(50% + 40px)' }}>
+          <TabMenu onTabChange={handleTabChange} />
+          <Menu items={props.ingredients} currentTab={currentTab} />
+        </div>}
+    </>
   );
 }
 

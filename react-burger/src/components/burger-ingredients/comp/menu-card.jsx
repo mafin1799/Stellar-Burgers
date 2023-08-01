@@ -5,24 +5,14 @@ import { ImageWithCounter } from "./image-with-counter";
 export const MenuCard = (props) => {
     return (
         <div className={`pt-6 pb-10 pl-4 pr-4 ${styles.card}`}>
-            {/**
-            Изображение и счетчик
-    */}
             <ImageWithCounter imageUrl={props.card.image} counter={2} />
-
-            {/**
-             * Цена и валюта
-             */}
-
-            <div className="text_type_digits-default">
+            <div className={`text_type_digits-default ${styles.center}`}>
                 {props.card.price}
                 <span className="pl-1"><CurrencyIcon /></span>
             </div>
-
-            <span className="text_type_main-default">
-                {/**Наименование */}
+            <div className={`text_type_main-default ${styles.center}`}>
                 {props.card.name}
-            </span>
+            </div>
 
         </div>
     )
