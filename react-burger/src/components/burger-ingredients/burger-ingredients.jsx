@@ -1,5 +1,5 @@
-import { Menu } from "./comp/menu";
-import { TabMenu } from "./comp/tab-menu";
+import { Menu } from "./components/menu";
+import { TabMenu } from "./components/tab-menu";
 import React from "react";
 import styles from "../../assets/styles.module.css"
 export const BurgerIngredients = (props) => {

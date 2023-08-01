@@ -8,14 +8,14 @@ function App() {
   const [data, setData] = React.useState({});
   const [done, setDone] = React.useState(false);
   React.useEffect(() => {
-    debugger
+    
     try {
       fetch('https://norma.nomoreparties.space/api/ingredients')
         .then(response => response.json())
         .then(result => {
           console.log(result)
           setDone(true)
-          setData(groupDataByType(result.data))
+          setData((result.data))
         })
 
     } catch (error) {
@@ -30,7 +30,7 @@ function App() {
           <AppHeader />
           <div className='row'>
             <BurgerIngredients ingredients={data} />
-            <BurgerConstructor/>
+            <BurgerConstructor ingredients={data}/>
           </div></>
       }
 
