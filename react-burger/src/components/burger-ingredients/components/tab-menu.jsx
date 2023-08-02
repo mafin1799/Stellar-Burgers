@@ -10,12 +10,12 @@ export const TabMenu = ({ onTabChange }) => {
     };
     return (
         <div>
-            <div className="text_type_main-large pt-10">Соберите бургер</div>
+            <div className="text_type_main-large pt-10" style={{height: 40}}>Соберите бургер</div>
 
             {/**
              * Tab menu, рыба, доделать переключение по якорным ссылкам
              */}
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex' }} className='pt-5'>
                 <Tab value='bun' onClick={() => handleTabChange("bun")} active={currentTab === "bun"}>
                     Булки
                 </Tab>

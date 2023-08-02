@@ -28,7 +28,7 @@ export const Menu = ({ items, currentTab }) => {
         }
     };
     return (
-        <div className={` ${styles.menu} pt-10 custom-scroll`} ref={menuRef} style={{ height: `calc(100vh - ${250}px)` }}>
+        <div className={` ${styles.menu} pt-10 custom-scroll`} ref={menuRef} style={{ height: `calc(100vh - ${300}px)` }}>
             {Object.entries(reorderedItems).map(([type, group]) => {
                 return (
                     <MenuGroup key={type} type={type} data={group} />

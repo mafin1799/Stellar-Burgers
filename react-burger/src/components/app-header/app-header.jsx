@@ -9,7 +9,7 @@ import styles from "../../assets/header/app-header.module.css"
 
 const NavMenu = ({ children }) => {
     return (
-        <div className={`${styles.navMenu} row p-0 `}>
+        <div className={`${styles.navMenu} p-0 `}>
             {children}
         </div>
     )

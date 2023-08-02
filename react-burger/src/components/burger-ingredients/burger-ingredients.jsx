@@ -10,16 +10,11 @@ export const BurgerIngredients = (props) => {
     setCurrentTab(tabValue);
   };
 
-  
-
   return (
-    <>
-      {
-        <div className={`${styles.col}`} style={{ marginLeft: 'auto', marginRight: 'calc(50% + 40px)' }}>
+        <div className={`${styles.col}`} style={{maxWidth: 600}} >
           <TabMenu onTabChange={handleTabChange} />
           <Menu items={props.ingredients} currentTab={currentTab} />
-        </div>}
-    </>
+        </div>
   );
 }
 
