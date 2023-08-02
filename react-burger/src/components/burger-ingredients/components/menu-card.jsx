@@ -1,6 +1,8 @@
 import styles from "../../../assets/burger-ingredients/card.module.css"
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ImageWithCounter } from "./image-with-counter";
+import { propDefinition } from "../../../utils/propDefenitions";
+import PropTypes from 'prop-types'
 
 export const MenuCard = ({card}) => {
     return (
@@ -16,4 +18,8 @@ export const MenuCard = ({card}) => {
 
         </div>
     )
+}
+
+MenuCard.propTypes = {
+    card: propDefinition.isRequired,
 }

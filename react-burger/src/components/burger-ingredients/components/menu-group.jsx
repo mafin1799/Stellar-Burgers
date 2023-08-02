@@ -1,7 +1,8 @@
 import { getTypeAlias } from "../../../utils/groupTypeAlias";
 import { MenuCard } from "./menu-card";
 import styles from "../../../assets/burger-ingredients/menu-group.module.css"
-
+import { propDefinition } from "../../../utils/propDefenitions";
+import PropTypes from 'prop-types'
 export const MenuGroup = ({ type, data }) => { // Используйте деструктуризацию, чтобы получить type и data
     return (
         <div id={type} className="pt-10 pr-5">
@@ -14,3 +15,8 @@ export const MenuGroup = ({ type, data }) => { // Используйте дес�
         </div>
     );
 };
+
+MenuGroup.propTypes = {
+    type: PropTypes.string.isRequired,
+    data: PropTypes.arrayOf(propDefinition).isRequired
+}

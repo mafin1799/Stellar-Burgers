@@ -5,7 +5,8 @@ import { DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import { TopDown } from "./components/top-down"
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components"
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
-
+import PropTypes from 'prop-types'
+import { propDefinition } from "../../utils/propDefenitions"
 
 export const BurgerConstructor = ({ingredients}) => {
     
@@ -62,4 +63,8 @@ export const BurgerConstructor = ({ingredients}) => {
 
         </div>
     )
+}
+
+BurgerConstructor.propTypes = {
+    ingredients: PropTypes.arrayOf(propDefinition).isRequired,
 }

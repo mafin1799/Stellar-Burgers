@@ -3,7 +3,8 @@ import { groupDataByType } from "../../../utils/groupDataByType";
 import { MenuGroup } from "./menu-group";
 import styles from "../../../assets/burger-ingredients/menu.module.css"
 import { useRef, useEffect } from "react";
-
+import { propDefinition } from "../../../utils/propDefenitions";
+import PropTypes from 'prop-types'
 
 export const Menu = ({ items, currentTab }) => {
     const menuRef = useRef(null);
@@ -36,4 +37,8 @@ export const Menu = ({ items, currentTab }) => {
             })}
         </div>
     )
+}
+
+Menu.propTypes = {
+    items: PropTypes.arrayOf(propDefinition).isRequired
 }

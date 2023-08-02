@@ -1,6 +1,7 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import styles from "../../../assets/burger-ingredients/tab.module.css"
+import PropTypes from 'prop-types'
 
 export const TabMenu = ({ onTabChange }) => {
 
@@ -34,4 +35,8 @@ export const TabMenu = ({ onTabChange }) => {
         </div>
 
     )
+}
+
+TabMenu.propTypes = {
+    onTabChange: PropTypes.func.isRequired
 }

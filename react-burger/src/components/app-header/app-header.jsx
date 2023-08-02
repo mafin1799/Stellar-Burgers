@@ -1,15 +1,19 @@
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import { BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
+import PropTypes from 'prop-types';
 
-
-import styles from "../../assets/header/app-header.module.css"
+import style from "../../assets/header/app-header.module.css"
 
 const NavMenu = ({ children }) => {
     return (
-        <div className={`${styles.navMenu} p-0 ${styles.container}`}>
+        <div className={`${style.navMenu} p-0 ${style.container}`}>
             {children}
         </div>
     )
+}
+
+NavMenu.propTypes = {
+    children: PropTypes.node.isRequired
 }
 
 const NavLink = ({ text, pressed, children }) => {
@@ -17,7 +21,7 @@ const NavLink = ({ text, pressed, children }) => {
     return (
         <div className="col-md-auto d-flex align-items-center">
             <a  className="text_type_main-default text_color_primary">
-                <div className={`pt-4 pb-4 pl-5 pr-5 ${styles.navCenter}`}>
+                <div className={`pt-4 pb-4 pl-5 pr-5 ${style.navCenter}`}>
                     <i className="pr-2">{children}</i>
                     <span className={`text ${text_style}`}>{text}</span>
                 </div>
@@ -25,6 +29,12 @@ const NavLink = ({ text, pressed, children }) => {
         </div>
     )
 }
+
+NavLink.propTypes = {
+    pressed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
+    children: PropTypes.node
+};
 
 const Navigate = ({ children }) => {
     return (
@@ -37,9 +47,13 @@ const Navigate = ({ children }) => {
 
 }
 
+Navigate.propTypes = {
+    children: PropTypes.node.isRequired
+}
+
 const AppHeader = () => {
     return (
-        <div className={styles.containerFluid}>
+        <div className={style.containerFluid}>
             <NavMenu>
                 <Navigate>
                     <NavLink path="#" text="Конструктор" pressed={true}>
