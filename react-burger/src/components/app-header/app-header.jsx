@@ -1,9 +1,6 @@
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import { BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 
-import "@ya.praktikum/react-developer-burger-ui-components/dist/ui/fonts/fonts.css";
-import "@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css"
-import "@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css"
 
 import styles from "../../assets/header/app-header.module.css"
 
@@ -15,11 +12,11 @@ const NavMenu = ({ children }) => {
     )
 }
 
-const NavLink = ({ path, text, pressed, children }) => {
+const NavLink = ({ text, pressed, children }) => {
     const text_style = pressed ? "text_color_primary" : "text_color_inactive";
     return (
         <div className="col-md-auto d-flex align-items-center">
-            <a href={path} className="text_type_main-default text_color_primary">
+            <a  className="text_type_main-default text_color_primary">
                 <div className={`pt-4 pb-4 pl-5 pr-5 ${styles.navCenter}`}>
                     <i className="pr-2">{children}</i>
                     <span className={`text ${text_style}`}>{text}</span>

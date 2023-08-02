@@ -1,5 +1,7 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
+import styles from "../../../assets/burger-ingredients/tab.module.css"
+
 export const TabMenu = ({ onTabChange }) => {
 
     const [currentTab, setCurrentTab] = useState("bun"); // Используем стейт для хранения текущей вкладки
@@ -10,12 +12,12 @@ export const TabMenu = ({ onTabChange }) => {
     };
     return (
         <div>
-            <div className="text_type_main-large pt-10" style={{height: 40}}>Соберите бургер</div>
+            <div className={`text_type_main-large pt-10 ${styles.title}`}>Соберите бургер</div>
 
             {/**
              * Tab menu, рыба, доделать переключение по якорным ссылкам
              */}
-            <div style={{ display: 'flex' }} className='pt-5'>
+            <div className={`pt-5 ${styles.dFlex}`}>
                 <Tab value='bun' onClick={() => handleTabChange("bun")} active={currentTab === "bun"}>
                     Булки
                 </Tab>
