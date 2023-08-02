@@ -9,6 +9,6 @@
 * [x] - create sprint-1/step-1
 
 * [x] - AppHeader
-* [ ] - BurgerIngredients
-* [ ] - BurgerConstructor
+* [x] - BurgerIngredients
+* [x] - BurgerConstructor
 
