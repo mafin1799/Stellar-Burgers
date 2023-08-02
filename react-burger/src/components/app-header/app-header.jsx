@@ -18,7 +18,7 @@ const NavMenu = ({ children }) => {
 const NavLink = ({ path, text, pressed, children }) => {
     const text_style = pressed ? "text_color_primary" : "text_color_inactive";
     return (
-        <div className="col-md-auto align-items-center">
+        <div className="col-md-auto d-flex align-items-center">
             <a href={path} className="text_type_main-default text_color_primary">
                 <div className={`pt-4 pb-4 pl-5 pr-5 ${styles.navCenter}`}>
                     <i className="pr-2">{children}</i>
