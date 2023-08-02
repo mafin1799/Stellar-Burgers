@@ -24,7 +24,7 @@ function App() {
   }, [])
 
   return (
-    <div className='ml-10 mr-10'>
+    <div>
       {
         !loading && data &&
         <>

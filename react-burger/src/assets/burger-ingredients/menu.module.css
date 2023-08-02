@@ -6,5 +6,5 @@
     min-height: 0;
     overflow: auto;
     scroll-snap-type: y mandatory;
-    scroll-padding: 64px;
+    scroll-padding: 32px;
 }

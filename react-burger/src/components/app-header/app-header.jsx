@@ -9,7 +9,7 @@ import styles from "../../assets/header/app-header.module.css"
 
 const NavMenu = ({ children }) => {
     return (
-        <div className={`${styles.navMenu} p-0 `}>
+        <div className={`${styles.navMenu} p-0 ${styles.container}`}>
             {children}
         </div>
     )
@@ -42,26 +42,28 @@ const Navigate = ({ children }) => {
 
 const AppHeader = () => {
     return (
-        <NavMenu>
-            <Navigate>
-                <NavLink path="#" text="Конструктор" pressed={true}>
-                    <BurgerIcon type="primary" />
-                </NavLink>
-                <NavLink path="#" text="Лента заказов" pressed={false}>
-                    <ListIcon type="secondary" />
-                </NavLink>
-            </Navigate>
+        <div className={styles.containerFluid}>
+            <NavMenu>
+                <Navigate>
+                    <NavLink path="#" text="Конструктор" pressed={true}>
+                        <BurgerIcon type="primary" />
+                    </NavLink>
+                    <NavLink path="#" text="Лента заказов" pressed={false}>
+                        <ListIcon type="secondary" />
+                    </NavLink>
+                </Navigate>
 
-            <div className="col d-flex align-items-center justify-content-center">
-                <Logo />
-            </div>
+                <div className="col d-flex align-items-center justify-content-center">
+                    <Logo />
+                </div>
 
-            <div className="col d-flex justify-content-end">
-                <NavLink path="#" text="Личный кабинет" pressed={false} >
-                    <ProfileIcon type="secondary" />
-                </NavLink>
-            </div>
-        </NavMenu>
+                <div className="col d-flex justify-content-end">
+                    <NavLink path="#" text="Личный кабинет" pressed={false} >
+                        <ProfileIcon type="secondary" />
+                    </NavLink>
+                </div>
+            </NavMenu>
+        </div>
     )
 }
 
