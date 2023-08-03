@@ -3,16 +3,15 @@
 
 ## Спринт 1
 
+### Первая итерация
 * [x] - npx create-react-app react-burger --template typescript
 * [x] - npm i @ya.praktikum/react-developer-burger-ui-components 
 * [x] - main - первое стабильное состояние проекта
 * [x] - create sprint-1/step-1
-
 * [x] - AppHeader
 * [x] - BurgerIngredients
 * [x] - BurgerConstructor
 
-### Первая итерация
 * [x] - Файл App.test.tsx необходимо удалить - он не понадобится.
 * [x] - У верхней и нижней булки должны быть надписи "Верх" и "Низ" соответственно.
 * [x] - В проекте много console.log
@@ -30,3 +29,14 @@
 > - Сохраняю состояние ошибке в стейт, вдруг потом пригодится
 > - Во всех компонентах использую деструктуризацию пропсов
 > - Убрал у  navLink path, далее вероятнее все буду успользовать компонент ```react-router-dom```
+
+### Вторая итерация
+
+> Промежуточное ревью зачтено
+
+### Третья итерация
+* [x] -Modal
+* [x] -ModalHeader 
+* [x] -ModalOverlay 
+* [x] - IngredientDetails 
+* [x] - OrderDetails 

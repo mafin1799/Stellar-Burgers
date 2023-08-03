@@ -1,38 +1,31 @@
-import styles from "../../assets/styles.module.css"
-import burgerStyles from '../../assets/burger-constructor/burger-constructor.module.css'
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components"
-import { DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
-import { TopDown } from "./components/top-down"
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components"
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
-import PropTypes from 'prop-types'
-import { propDefinition } from "../../utils/propDefenitions"
+import PropTypes from 'prop-types';
+import React from "react";
+import styles from "../../assets/styles.module.css";
+import burgerStyles from '../../assets/burger-constructor/burger-constructor.module.css';
+import { DragIcon, CurrencyIcon, Button, ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import { TopDown } from "./components/top-down";
+import { propDefinition } from "../../utils/propDefenitions";
+import { OrderDetails } from "./components/order-details";
+import { propStub } from "./components/prop";
 
 export const BurgerConstructor = ({ingredients}) => {
     
-
+    const [modalVisible,setModalVisible] = React.useState(false)
    
-    const prop = {
-        _id: "643d69a5c3f7b9001cfa093c",
-        name: "Краторная булка N-200i",
-        type: "bun",
-        proteins: 80,
-        fat: 24,
-        carbohydrates: 53,
-        calories: 420,
-        price: 1255,
-        image: "https://code.s3.yandex.net/react/code/bun-02.png",
-        image_mobile: "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
-        image_large: "https://code.s3.yandex.net/react/code/bun-02-large.png",
-        __v: 0
+    const openModal = () => {
+        setModalVisible(true)
     }
 
-    let sum = (prop.price * 2);
+    const closeModal = () => {
+        setModalVisible(false);
+    }
+
+    let sum = (propStub.price * 2);
     return (
         <div className={`${styles.col} ${burgerStyles.maxWidth}`}>
             <div className="mt-25">
             </div>
-            <TopDown prop={prop}>
+            <TopDown prop={propStub}>
                 <div className={` ${burgerStyles.container} custom-scroll`}>
                     {
                         ingredients.map((element) => {
@@ -55,12 +48,12 @@ export const BurgerConstructor = ({ingredients}) => {
                     </span>
                 </div>
                 <div  className={burgerStyles.mlAuto}>
-                    <Button type="primary" htmlType="button">
+                    <Button type="primary" htmlType="button" onClick={openModal}>
                         Оформить заказ
                     </Button>
                 </div>
             </div>
-
+            {modalVisible && <OrderDetails closeModal={closeModal}/>}
         </div>
     )
 }

@@ -1,5 +1,6 @@
-import styles from "../../../assets/burger-ingredients/image.module.css"
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import styles from "../../../assets/burger-ingredients/image.module.css";
+
 export const ImageWithCounter = ({ imageUrl, counter }) => {
     return (
         <div className={styles.image}>
@@ -12,7 +13,6 @@ export const ImageWithCounter = ({ imageUrl, counter }) => {
         </div>
     );
 };
-
 
 ImageWithCounter.propTypes = {
     imageUrl: PropTypes.string.isRequired,

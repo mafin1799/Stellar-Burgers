@@ -1,0 +1,13 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-top: 40px;
+    padding-right: 40px;
+}
+
+button, [type="close"]{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
