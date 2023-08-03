@@ -1,4 +1,14 @@
-.modal{
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
     background-color: #1C1C21;
 
     border-radius: 40px;
@@ -10,14 +20,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 99999;
+    animation: show .3s ease;
 }
 
-.modalContent{
+.modalContent {
     /**
     Мб выравнивание сделать тут
     */
     display: flex;
     flex-direction: column;
     text-align: center;
-   
 }
