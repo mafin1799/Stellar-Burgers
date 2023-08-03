@@ -4,8 +4,13 @@ import { ImageWithCounter } from "./image-with-counter";
 import { propDefinition } from "../../../utils/propDefenitions";
 
 export const MenuCard = ({card, openModal}) => {
+    const openModalCheck = () =>{
+        if(!window.getSelection().toString()){
+            openModal(card)
+        }
+    }
     return (
-        <div className={`pt-6 pb-10 pl-4 pr-4 ${styles.card}`} onClick={() => {openModal(card)}}>
+        <div className={`pt-6 pb-10 pl-4 pr-4 ${styles.card}`} onClick={openModalCheck}>
             <ImageWithCounter imageUrl={card.image} counter={1} />
             <div className={`text_type_digits-default ${styles.center}`}>
                 {card.price}
@@ -14,9 +19,6 @@ export const MenuCard = ({card, openModal}) => {
             <div className={`text_type_main-default ${styles.center}`}>
                 {card.name}
             </div>
-
-           
-
         </div>
     )
 }

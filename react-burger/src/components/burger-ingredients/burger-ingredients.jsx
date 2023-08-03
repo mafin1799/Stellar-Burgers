@@ -10,6 +10,8 @@ import { IngredientDetails } from "./components/ingredient-details";
 export const BurgerIngredients = ({ ingredients }) => {
   const [modal, setModal] = React.useState(false)
   const [currentIngredient, setCurrentIngredient] = useState(null);
+ 
+
   const openModal = (id) => {
     setModal(true)
     setCurrentIngredient(id)
@@ -25,10 +27,10 @@ export const BurgerIngredients = ({ ingredients }) => {
       closeModal();
     }
   }
-React.useEffect(() => {
-  document.addEventListener('keydown', handleKeyPress)
-  return() => document.removeEventListener('keydown',handleKeyPress)
-})
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress)
+    return () => document.removeEventListener('keydown', handleKeyPress)
+  })
   const [currentTab, setCurrentTab] = React.useState("buns"); // Используем стейт для хранения текущей вкладки
   const handleTabChange = (tabValue) => {
     setCurrentTab(tabValue);

@@ -9,13 +9,13 @@ import { OrderDetails } from "./components/order-details";
 import { propStub } from "./components/prop";
 
 export const BurgerConstructor = ({ingredients}) => {
-    
     const [modalVisible,setModalVisible] = React.useState(false)
    
     const openModal = () => {
-        setModalVisible(true)
+        if( !window.getSelection().toString()){
+            setModalVisible(true)
+        }
     }
-
     const closeModal = () => {
         setModalVisible(false);
     }
