@@ -20,6 +20,16 @@ export const BurgerConstructor = ({ingredients}) => {
         setModalVisible(false);
     }
 
+    const handleKeyPress = (e) => {
+        if(e.key === 'Escape'){
+            closeModal();
+        }
+    }
+    React.useEffect(() => {
+        document.addEventListener('keydown', handleKeyPress)
+        return() => document.removeEventListener('keydown',handleKeyPress)
+      })
+
     let sum = (propStub.price * 2);
     return (
         <div className={`${styles.col} ${burgerStyles.maxWidth}`}>
