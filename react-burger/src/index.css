@@ -11,3 +11,48 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.col-md-auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.col {
+  flex: 1 0 0%;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.justify-content-start {
+  justify-content: flex-start !important;
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) * -.5);
+  margin-left: calc(var(--bs-gutter-x) * -.5);
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+
+.w-50{
+  width: 50%!important;
+}
+

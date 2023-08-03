@@ -1,0 +1,21 @@
+.container {
+    height: calc(100vh - 460px);
+    overflow: auto;
+    max-width: 600px;
+    scroll-snap-type: y mandatory;
+    scroll-padding: 0;
+    padding-right: 13px;
+    margin-right: -25px;
+}
+
+.maxWidth{
+    max-width: 600px
+}
+
+.ml35{
+    margin-left: 35%;
+}
+
+.mlAuto{
+    margin-left: auto;
+}

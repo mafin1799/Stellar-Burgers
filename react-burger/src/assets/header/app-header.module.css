@@ -1,0 +1,27 @@
+a {
+    text-decoration: none;
+}
+
+.navMenu {
+    display: flex;
+    background-color: #1C1C21;
+    height: 88px;
+    padding-left: calc(100% / 6);
+    padding-right: calc(100% / 6);
+}
+
+.navCenter {
+    display: flex;
+    align-items: center;
+}
+
+.containerFluid {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
