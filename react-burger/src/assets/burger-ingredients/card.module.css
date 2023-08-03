@@ -2,8 +2,19 @@
     width: 50% !important;
     display: inline-block;
     box-sizing: border-box;
-  
 }
+
+.card:hover {
+   border-radius: 50px;
+   box-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25), 0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 16px rgba(51, 51, 255, 0.5);
+}
+
+.card:active {
+    border-radius: 50px;
+    background-color:rgba(51, 51, 255, 0.1) ;
+    box-shadow: 0px 0px 8px rgba(51, 51, 255, 0.25), 0px 0px 15px rgba(51, 51, 255, 0.25), 0px 4px 20px rgba(51, 51, 255, 0.5);
+    transition: all .2s;
+ }
 
 .center{
     text-align: center;
