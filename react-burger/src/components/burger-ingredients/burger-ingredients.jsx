@@ -9,21 +9,21 @@ import { IngredientDetails } from "./components/ingredient-details";
 import { Modal } from '../modal/modal';
 
 export const BurgerIngredients = ({ ingredients }) => {
-  const [modal, setModal] = React.useState(false)
+  const [modalVisible, setModalVisible] = React.useState(false)
   const [currentIngredient, setCurrentIngredient] = useState(null);
 
-
   const openModal = (id) => {
-    setModal(true)
+    setModalVisible(true)
     setCurrentIngredient(id)
   }
 
   const closeModal = () => {
-    setModal(false);
+    setModalVisible(false);
     setCurrentIngredient(null)
   }
 
   const [currentTab, setCurrentTab] = React.useState("buns"); // Используем стейт для хранения текущей вкладки
+
   const handleTabChange = (tabValue) => {
     setCurrentTab(tabValue);
   };
@@ -33,7 +33,7 @@ export const BurgerIngredients = ({ ingredients }) => {
       <TabMenu onTabChange={handleTabChange} />
       <Menu items={ingredients} currentTab={currentTab} openModal={openModal} />
       {
-        modal &&
+        modalVisible &&
         <Modal title={'Детали ингредиента'} onClose={closeModal}>
           <IngredientDetails data={ currentIngredient } />
         </Modal>
