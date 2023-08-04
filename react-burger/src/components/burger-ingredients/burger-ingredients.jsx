@@ -12,9 +12,9 @@ export const BurgerIngredients = ({ ingredients }) => {
   const [modalVisible, setModalVisible] = React.useState(false)
   const [currentIngredient, setCurrentIngredient] = useState(null);
 
-  const openModal = (id) => {
+  const openModal = (item) => {
     setModalVisible(true)
-    setCurrentIngredient(id)
+    setCurrentIngredient(item)
   }
 
   const closeModal = () => {
