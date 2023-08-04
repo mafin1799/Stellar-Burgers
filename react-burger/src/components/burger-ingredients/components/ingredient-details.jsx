@@ -1,10 +1,9 @@
 import styles from '../../../assets/styles.module.css';
-import { Modal } from "../../modal/modal";
 import { propDefinition } from "../../../utils/propDefenitions";
 
-export const IngredientDetails = ({ onClose, data }) => {
+export const IngredientDetails = ({ data }) => {
     return (
-        <Modal title={'Детали ингредиента'} onClose={onClose}>
+        <>
             <div className={styles.container}>
                 <img src={data.image_large} alt="" />
                 <div className="pt-4 text_type_main-medium">
@@ -37,10 +36,10 @@ export const IngredientDetails = ({ onClose, data }) => {
                     </div>
                 </div>
             </div>
-        </Modal>
+        </>
     )
 }
 
 IngredientDetails.propTypes = {
-    data: propDefinition.isRequired,
+    data: propDefinition.isRequired
 }

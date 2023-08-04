@@ -1,3 +1,4 @@
+import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from 'prop-types'
 import styles from '../../assets/modal/modal.module.css'
@@ -6,6 +7,18 @@ import { ModalOverlay } from "./modal-overlay";
 
 export const Modal = ({ title, onClose, children }) => {
   const modalRoot = document.getElementById("react-modals");
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Escape') {
+      onClose();
+    }
+  }
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress)
+    return () => document.removeEventListener('keydown', handleKeyPress)
+  })
+
+
   return ReactDOM.createPortal(
       <>
         <ModalOverlay onClose={onClose}/>

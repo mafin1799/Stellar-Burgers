@@ -40,5 +40,7 @@ export const Menu = ({ items, currentTab, openModal}) => {
 }
 
 Menu.propTypes = {
-    items: PropTypes.arrayOf(propDefinition).isRequired
+    items: PropTypes.arrayOf(propDefinition).isRequired,
+    currentTab: PropTypes.string.isRequired,
+    openModal: PropTypes.func.isRequired,
 }

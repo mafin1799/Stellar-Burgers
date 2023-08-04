@@ -4,23 +4,23 @@
 ## Спринт 1
 
 ### Первая итерация
-* [x] - npx create-react-app react-burger --template typescript
-* [x] - npm i @ya.praktikum/react-developer-burger-ui-components 
-* [x] - main - первое стабильное состояние проекта
-* [x] - create sprint-1/step-1
-* [x] - AppHeader
-* [x] - BurgerIngredients
-* [x] - BurgerConstructor
+* [x]  npx create-react-app react-burger --template typescript
+* [x]  npm i @ya.praktikum/react-developer-burger-ui-components 
+* [x]  main - первое стабильное состояние проекта
+* [x]  create sprint-1/step-1
+* [x]  AppHeader
+* [x]  BurgerIngredients
+* [x]  BurgerConstructor
 
-* [x] - Файл App.test.tsx необходимо удалить - он не понадобится.
-* [x] - У верхней и нижней булки должны быть надписи "Верх" и "Низ" соответственно.
-* [x] - В проекте много console.log
-* [x] - Добавьте проверку ответа сервера - res.ok
-* [x] - Использовать атрибут style нужно только для динамических стилей, во всех остальных случаях нужно использовать классы.
-* [x] - Поправьте импорты в react-burger/src/components/app-header/app-header.jsx
-* [x] - У всех компонентов с пропсами должны быть propTypes
-* [x] - Использовать var уже не стоит (устаревший синтаксис), сейчас используется или const или let
-* [x] - Файл app и стили для него должны быть в директории components
+* [x]  Файл App.test.tsx необходимо удалить - он не понадобится.
+* [x]  У верхней и нижней булки должны быть надписи "Верх" и "Низ" соответственно.
+* [x]  В проекте много console.log
+* [x]  Добавьте проверку ответа сервера - res.ok
+* [x]  Использовать атрибут style нужно только для динамических стилей, во всех остальных случаях нужно использовать классы.
+* [x]  Поправьте импорты в react-burger/src/components/app-header/app-header.jsx
+* [x]  У всех компонентов с пропсами должны быть propTypes
+* [x]  Использовать var уже не стоит (устаревший синтаксис), сейчас используется или const или let
+* [x]  Файл app и стили для него должны быть в директории components
 
 > Предложенные ревьюером правки можно использовать as is
 >
@@ -35,8 +35,13 @@
 > Промежуточное ревью зачтено
 
 ### Третья итерация
-* [x] -Modal
-* [x] -ModalHeader 
-* [x] -ModalOverlay 
-* [x] - IngredientDetails 
-* [x] - OrderDetails 
+* [x] Modal
+* [x] ModalHeader 
+* [x] ModalOverlay 
+* [x]  IngredientDetails 
+* [x]  OrderDetails 
+
+> Необходимо исправить:
+> * [x] закрытие модального окна по ESC должно быть описано в компоненте Modal
+> * [x] Все компоненты в реакте желательно делать универсальными - переиспользуемыми. Сейчас выходит, что OrderDetails  и IngredientDetails  нельзя использовать без модальных окон, что делает их менее универсальными. В будущем появятся кейсы когда вам нужно будет использовать эту верстку вне модалки.
+> * [x] У MenuCard , Menu  и MenuGroup  указаны не все пропсы в propTypes

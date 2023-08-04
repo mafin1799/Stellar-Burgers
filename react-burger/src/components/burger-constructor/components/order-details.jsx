@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import modalStyles from '../../../assets/order-details.module.css';
 import Done from "../../../images/done.png";
-import { Modal } from "../../modal/modal";
 
-export const OrderDetails = ({ closeModal }) => {
+export const OrderDetails = () => {
     return (
-        <Modal onClose={closeModal}>
+        <>
             <div className={`pt-30 text_type_digits-large ${modalStyles.digitShadow}`}>
                 034536
             </div>
@@ -21,10 +20,6 @@ export const OrderDetails = ({ closeModal }) => {
             <div className="pt-2 pb-30 text_type_main-default text_color_inactive">
                 Дождитесь готовности на орбитальной станции
             </div>
-        </Modal>
+        </>
     )
-}
-
-OrderDetails.propTypes = {
-    closeModal: PropTypes.func.isRequired
 }

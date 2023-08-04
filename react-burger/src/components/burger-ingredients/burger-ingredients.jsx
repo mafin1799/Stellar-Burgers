@@ -6,11 +6,12 @@ import { Menu } from "./components/menu";
 import { TabMenu } from "./components/tab-menu";
 import { propDefinition } from "../../utils/propDefenitions";
 import { IngredientDetails } from "./components/ingredient-details";
+import { Modal } from '../modal/modal';
 
 export const BurgerIngredients = ({ ingredients }) => {
   const [modal, setModal] = React.useState(false)
   const [currentIngredient, setCurrentIngredient] = useState(null);
- 
+
 
   const openModal = (id) => {
     setModal(true)
@@ -22,15 +23,6 @@ export const BurgerIngredients = ({ ingredients }) => {
     setCurrentIngredient(null)
   }
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
-  }
-  React.useEffect(() => {
-    document.addEventListener('keydown', handleKeyPress)
-    return () => document.removeEventListener('keydown', handleKeyPress)
-  })
   const [currentTab, setCurrentTab] = React.useState("buns"); // Используем стейт для хранения текущей вкладки
   const handleTabChange = (tabValue) => {
     setCurrentTab(tabValue);
@@ -40,7 +32,12 @@ export const BurgerIngredients = ({ ingredients }) => {
     <div className={`${styles.col} ${burgerStyles.maxWidth}`}  >
       <TabMenu onTabChange={handleTabChange} />
       <Menu items={ingredients} currentTab={currentTab} openModal={openModal} />
-      {modal && <IngredientDetails title={'Детали ингредиента'} data={currentIngredient} onClose={closeModal} />}
+      {
+        modal &&
+        <Modal title={'Детали ингредиента'} onClose={closeModal}>
+          <IngredientDetails data={ currentIngredient } />
+        </Modal>
+      }
     </div>
   );
 }

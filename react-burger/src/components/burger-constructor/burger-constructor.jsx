@@ -7,28 +7,19 @@ import { TopDown } from "./components/top-down";
 import { propDefinition } from "../../utils/propDefenitions";
 import { OrderDetails } from "./components/order-details";
 import { propStub } from "./components/prop";
+import { Modal } from '../modal/modal';
 
-export const BurgerConstructor = ({ingredients}) => {
-    const [modalVisible,setModalVisible] = React.useState(false)
-   
+export const BurgerConstructor = ({ ingredients }) => {
+    const [modalVisible, setModalVisible] = React.useState(false)
+
     const openModal = () => {
-        if( !window.getSelection().toString()){
+        if (!window.getSelection().toString()) {
             setModalVisible(true)
         }
     }
     const closeModal = () => {
         setModalVisible(false);
     }
-
-    const handleKeyPress = (e) => {
-        if(e.key === 'Escape'){
-            closeModal();
-        }
-    }
-    React.useEffect(() => {
-        document.addEventListener('keydown', handleKeyPress)
-        return() => document.removeEventListener('keydown',handleKeyPress)
-      })
 
     let sum = (propStub.price * 2);
     return (
@@ -39,11 +30,11 @@ export const BurgerConstructor = ({ingredients}) => {
                 <div className={` ${burgerStyles.container} custom-scroll`}>
                     {
                         ingredients.map((element) => {
-                            { sum = sum + element.price}
+                            { sum = sum + element.price }
                             return (
                                 <div key={element._id} className={`${styles.snapStart} ${styles.dFlex} ${styles.verticalCenter} pb-4`} >
                                     <span className="pr-2"><DragIcon /></span>
-                                    <ConstructorElement thumbnail={element.image}  price={element.price} text={element.name} />
+                                    <ConstructorElement thumbnail={element.image} price={element.price} text={element.name} />
                                 </div>
                             )
                         })
@@ -57,13 +48,18 @@ export const BurgerConstructor = ({ingredients}) => {
                         {sum} <CurrencyIcon />
                     </span>
                 </div>
-                <div  className={burgerStyles.mlAuto}>
+                <div className={burgerStyles.mlAuto}>
                     <Button type="primary" htmlType="button" onClick={openModal}>
                         Оформить заказ
                     </Button>
                 </div>
             </div>
-            {modalVisible && <OrderDetails closeModal={closeModal}/>}
+            {modalVisible &&
+                <Modal  onClose={closeModal}>
+                    <OrderDetails />
+                </Modal>
+            }
+
         </div>
     )
 }
