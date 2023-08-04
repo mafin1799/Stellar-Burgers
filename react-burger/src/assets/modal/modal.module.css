@@ -1,0 +1,32 @@
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    background-color: #1C1C21;
+    border-radius: 40px;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04);
+    width: 720px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    animation: show 1s ease;
+}
+
+.modalContent {
+    /**
+    Мб выравнивание сделать тут
+    */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

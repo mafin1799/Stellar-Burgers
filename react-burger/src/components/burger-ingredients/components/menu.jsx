@@ -1,14 +1,14 @@
-
+import PropTypes from 'prop-types';
+import styles from "../../../assets/burger-ingredients/menu.module.css";
+import { useRef, useEffect } from "react";
 import { groupDataByType } from "../../../utils/groupDataByType";
 import { MenuGroup } from "./menu-group";
-import styles from "../../../assets/burger-ingredients/menu.module.css"
-import { useRef, useEffect } from "react";
 import { propDefinition } from "../../../utils/propDefenitions";
-import PropTypes from 'prop-types'
 
-export const Menu = ({ items, currentTab }) => {
+
+export const Menu = ({ items, currentTab, openModal}) => {
     const menuRef = useRef(null);
-
+    
     const groupedItemd = groupDataByType(items)
     const desiredOrder = ['bun', 'sauce', 'main'];
     const reorderedItems = {};
@@ -32,7 +32,7 @@ export const Menu = ({ items, currentTab }) => {
         <div className={` ${styles.menu} pt-10 custom-scroll`} ref={menuRef} >
             {Object.entries(reorderedItems).map(([type, group]) => {
                 return (
-                    <MenuGroup key={type} type={type} data={group} />
+                    <MenuGroup key={type} type={type} data={group} openModal={openModal}/>
                 )
             })}
         </div>
@@ -40,5 +40,7 @@ export const Menu = ({ items, currentTab }) => {
 }
 
 Menu.propTypes = {
-    items: PropTypes.arrayOf(propDefinition).isRequired
+    items: PropTypes.arrayOf(propDefinition).isRequired,
+    currentTab: PropTypes.string.isRequired,
+    openModal: PropTypes.func.isRequired,
 }

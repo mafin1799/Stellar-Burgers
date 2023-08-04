@@ -1,12 +1,17 @@
 import styles from "../../../assets/burger-ingredients/card.module.css"
+import PropTypes from 'prop-types'
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ImageWithCounter } from "./image-with-counter";
 import { propDefinition } from "../../../utils/propDefenitions";
-import PropTypes from 'prop-types'
 
-export const MenuCard = ({card}) => {
+export const MenuCard = ({card, openModal}) => {
+    const openModalCheck = () =>{
+        if(!window.getSelection().toString()){
+            openModal(card)
+        }
+    }
     return (
-        <div className={`pt-6 pb-10 pl-4 pr-4 ${styles.card}`}>
+        <div className={`pt-6 pb-10 pl-4 pr-4 ${styles.card}`} onClick={openModalCheck}>
             <ImageWithCounter imageUrl={card.image} counter={1} />
             <div className={`text_type_digits-default ${styles.center}`}>
                 {card.price}
@@ -15,11 +20,11 @@ export const MenuCard = ({card}) => {
             <div className={`text_type_main-default ${styles.center}`}>
                 {card.name}
             </div>
-
         </div>
     )
 }
 
 MenuCard.propTypes = {
     card: propDefinition.isRequired,
+    openModal: PropTypes.func.isRequired
 }
