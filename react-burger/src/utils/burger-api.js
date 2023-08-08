@@ -7,7 +7,6 @@ export const getIngregientsData = () => {
 }
 
 export const getOrderData = (ingredientsId) => {
-  console.log(ingredientsId)
   return fetch(`${STELLAR_BERGER_API}/orders`, {
     method: 'POST',
     headers: {
