@@ -8,7 +8,6 @@ import { propStub } from "./components/prop";
 import { Modal } from '../modal/modal';
 import { getOrderData } from '../../utils/burger-api';
 import { IngredientsContext } from '../services/appContext';
-import useLocalStorage from '../hooks/local-storage';
 
 export const BurgerConstructor = () => {
 
