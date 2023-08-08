@@ -4,12 +4,12 @@ import React from 'react'
 import { BurgerConstructor } from './burger-constructor/burger-constructor';
 import styles from "../assets/styles.module.css"
 import { getIngregientsData } from '../utils/burger-api';
-
+import { IngredientsContext } from './services/appContext';
 
 function App() {
 
   const [loading, setLoading] = React.useState(true);
-  const [data, setData] = React.useState(null);
+  const [ingredients, setData] = React.useState(null);
   const [hasError, setHasError] = React.useState(false)
 
 
@@ -28,13 +28,15 @@ function App() {
   return (
     <div>
       {
-        !loading && !hasError && data &&
+        !loading && !hasError && ingredients &&
         <>
           <AppHeader />
           <div className={`${styles.row} ${styles.container} `} style={{ width: 'calc(100vw - 19.7% - 19.7% + 40px)', justifyContent: 'center' }}>
-            <BurgerIngredients ingredients={data} />
-            <div className={styles.col} style={{ maxWidth: 40 }}></div>
-            <BurgerConstructor ingredients={data} />
+            <IngredientsContext.Provider value={ingredients}>
+              <BurgerIngredients />
+              <div className={styles.col} style={{ maxWidth: 40 }}></div>
+              <BurgerConstructor />
+            </IngredientsContext.Provider>
           </div>
         </>
       }

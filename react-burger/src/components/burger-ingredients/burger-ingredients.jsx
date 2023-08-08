@@ -7,11 +7,11 @@ import { TabMenu } from "./components/tab-menu";
 import { propDefinition } from "../../utils/propDefenitions";
 import { IngredientDetails } from "./components/ingredient-details";
 import { Modal } from '../modal/modal';
-
-export const BurgerIngredients = ({ ingredients }) => {
+import { IngredientsContext } from '../services/appContext';
+export const BurgerIngredients = () => {
   const [modalVisible, setModalVisible] = React.useState(false)
   const [currentIngredient, setCurrentIngredient] = useState(null);
-
+  const ingredients = React.useContext(IngredientsContext)
   const openModal = (item) => {
     setModalVisible(true)
     setCurrentIngredient(item)
@@ -42,6 +42,3 @@ export const BurgerIngredients = ({ ingredients }) => {
   );
 }
 
-BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(propDefinition).isRequired,
-}

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes, { element } from 'prop-types';
 import React from "react";
 import styles from "../../assets/styles.module.css";
 import burgerStyles from '../../assets/burger-constructor/burger-constructor.module.css';
@@ -8,9 +8,17 @@ import { propDefinition } from "../../utils/propDefenitions";
 import { OrderDetails } from "./components/order-details";
 import { propStub } from "./components/prop";
 import { Modal } from '../modal/modal';
-
-export const BurgerConstructor = ({ ingredients }) => {
+import { getOrderData } from '../../utils/burger-api';
+import { IngredientsContext } from '../services/appContext';
+export const BurgerConstructor = () => {
     const [modalVisible, setModalVisible] = React.useState(false)
+    const [hasBun, setHasBun] = React.useState(false);
+
+    const ingredients = React.useContext(IngredientsContext)
+    const [loading, setLoading] = React.useState(true);
+    const [data, setData] = React.useState(null);
+    const [hasError, setHasError] = React.useState(false)
+
 
     const openModal = () => {
         if (!window.getSelection().toString()) {
@@ -21,6 +29,25 @@ export const BurgerConstructor = ({ ingredients }) => {
         setModalVisible(false);
     }
 
+    let ingredientsId = [];
+
+    ingredients.map((elem) => {
+        ingredientsId.push(elem._id)
+    })
+
+    React.useEffect(() => {
+        try {
+            getOrderData(ingredientsId)
+            .then(result => {
+              setData(result);
+              setLoading(false);
+            })
+        } catch (error) {
+          setHasError(true)
+        }
+      }, [modalVisible])
+
+
     let sum = (propStub.price * 2);
     return (
         <div className={`${styles.col} ${burgerStyles.maxWidth}`}>
@@ -30,10 +57,17 @@ export const BurgerConstructor = ({ ingredients }) => {
                 <div className={` ${burgerStyles.container} custom-scroll`}>
                     {
                         ingredients.map((element) => {
-                            { sum = sum + element.price }
+                            if (element.type === 'bun' && hasBun) {
+                                return null;
+                            }
+                            if (element.type === 'bun') {
+                                setHasBun(true)
+                            }
+                            {sum = sum + element.price}
                             return (
                                 <div key={element._id} className={`${styles.snapStart} ${styles.dFlex} ${styles.verticalCenter} pb-4`} >
                                     <span className="pr-2"><DragIcon /></span>
+                                   
                                     <ConstructorElement thumbnail={element.image} price={element.price} text={element.name} />
                                 </div>
                             )
@@ -41,7 +75,7 @@ export const BurgerConstructor = ({ ingredients }) => {
                     }
                 </div>
             </TopDown>
-
+            
             <div className={`pt-4 ${styles.row}`}>
                 <div className={`text_type_digits-medium ${burgerStyles.ml35}`}>
                     <span >
@@ -54,16 +88,12 @@ export const BurgerConstructor = ({ ingredients }) => {
                     </Button>
                 </div>
             </div>
-            {modalVisible &&
-                <Modal  onClose={closeModal}>
-                    <OrderDetails />
+            {modalVisible  && !loading && !hasError &&
+                <Modal onClose={closeModal}>
+                    <OrderDetails data={data} />
                 </Modal>
             }
 
         </div>
     )
-}
-
-BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(propDefinition).isRequired,
 }
