@@ -3,7 +3,6 @@ import modalStyles from '../../../assets/order-details.module.css';
 import Done from "../../../images/done.png";
 
 export const OrderDetails = ({data}) => {
-    console.log(data)
     return (
         <>
             <div className={`pt-30 text_type_digits-large ${modalStyles.digitShadow}`}>

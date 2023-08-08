@@ -10,16 +10,18 @@ import { propStub } from "./components/prop";
 import { Modal } from '../modal/modal';
 import { getOrderData } from '../../utils/burger-api';
 import { IngredientsContext } from '../services/appContext';
+import useLocalStorage from '../hooks/local-storage';
+
 export const BurgerConstructor = () => {
-    const [modalVisible, setModalVisible] = React.useState(false)
-    const [hasBun, setHasBun] = React.useState(false);
 
     const ingredients = React.useContext(IngredientsContext)
+    const [modalVisible, setModalVisible] = React.useState(false)
+    const [hasBun, setHasBun] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
     const [data, setData] = React.useState(null);
     const [hasError, setHasError] = React.useState(false)
 
-
+    const [lastOrder, setLastOrder] = useLocalStorage("lastOrder", null)
     const openModal = () => {
         if (!window.getSelection().toString()) {
             setModalVisible(true)
@@ -37,11 +39,15 @@ export const BurgerConstructor = () => {
 
     React.useEffect(() => {
         try {
-            getOrderData(ingredientsId)
-            .then(result => {
-              setData(result);
-              setLoading(false);
-            })
+            if(modalVisible){
+                getOrderData(ingredientsId)
+                .then(result => {
+                  setData(result);
+                  setLastOrder(result)
+                  setLoading(false);
+                })
+            }
+           
         } catch (error) {
           setHasError(true)
         }
@@ -75,7 +81,7 @@ export const BurgerConstructor = () => {
                     }
                 </div>
             </TopDown>
-            
+
             <div className={`pt-4 ${styles.row}`}>
                 <div className={`text_type_digits-medium ${burgerStyles.ml35}`}>
                     <span >
