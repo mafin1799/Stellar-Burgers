@@ -16,8 +16,11 @@ export const BurgerConstructor = () => {
     const [loading, setLoading] = React.useState(true);
     const [data, setData] = React.useState(null);
     const [hasError, setHasError] = React.useState(false)
-
     const [lastOrder, setLastOrder] = React.useState("lastOrder", null)
+
+    let totalCount = (propStub.price * 2);
+    let _bun = null;
+
     const openModal = () => {
         if (!window.getSelection().toString()) {
             setModalVisible(true)
@@ -26,39 +29,38 @@ export const BurgerConstructor = () => {
     const closeModal = () => {
         setModalVisible(false);
     }
-    let totalCount = (propStub.price * 2);
-    let _bun = null;
-    ingredients.map((elem) => {
-        totalCount = totalCount + elem.price;
 
-        if(elem.type === 'bun'){      
-            _bun = elem;         
+    ingredients.forEach((elem) => {
+        totalCount = totalCount + elem.price;
+        if (elem.type === 'bun') {
+            _bun = elem;
         }
     });
 
-   const filteredData = ingredients.filter(function(elem){
+    const filteredData = ingredients.filter(function (elem) {
         return elem.type !== 'bun'
     })
     const ingredientIds = ingredients.map((elem) => (elem._id));
 
-    React.useEffect(() => {
+    const onOrder = () => {
         try {
-            if(modalVisible){
-                getOrderData(ingredientIds)
+            getOrderData(ingredientIds)
                 .then(result => {
-                  setData(result);
-                  setLastOrder(result)
-                  setLoading(false);
+                    setData(result);
+                    setLastOrder(result)
+                    setLoading(false);
+                    openModal();
                 })
-            }
-           
-        } catch (error) {
-          setHasError(true)
         }
-      }, [modalVisible])
+        catch (error) {
+            setHasError(true)
+        }
+    }
 
 
-   
+
+
+
     return (
         <div className={`${styles.col} ${burgerStyles.maxWidth}`}>
             <div className="mt-25">
@@ -70,7 +72,7 @@ export const BurgerConstructor = () => {
                             return (
                                 <div key={element._id} className={`${styles.snapStart} ${styles.dFlex} ${styles.verticalCenter} pb-4`} >
                                     <span className="pr-2"><DragIcon /></span>
-                                   
+
                                     <ConstructorElement thumbnail={element.image} price={element.price} text={element.name} />
                                 </div>
                             )
@@ -86,12 +88,12 @@ export const BurgerConstructor = () => {
                     </span>
                 </div>
                 <div className={burgerStyles.mlAuto}>
-                    <Button type="primary" htmlType="button" onClick={openModal}>
+                    <Button type="primary" htmlType="button" onClick={onOrder}>
                         Оформить заказ
                     </Button>
                 </div>
             </div>
-            {modalVisible  && !loading && !hasError &&
+            {modalVisible && !loading && !hasError &&
                 <Modal onClose={closeModal}>
                     <OrderDetails data={data} />
                 </Modal>

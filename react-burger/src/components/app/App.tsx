@@ -18,8 +18,9 @@ function App() {
       getIngregientsData()
         .then(result => {
           setIngredients(result.data);
-          setLoading(false);
+         
         })
+        .finally(() => setLoading(false))
     } catch (error) {
       setHasError(true)
     }
