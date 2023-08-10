@@ -37,3 +37,12 @@
 .snapStart{
     scroll-snap-align: start;
 }
+
+.appCenter{
+    width: calc(100vw - 19.7% - 19.7% + 40px);
+    justify-content: center
+}
+
+.middleCol{
+    max-width: 40px;
+}
