@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import modalStyles from '../../../assets/order-details.module.css';
 import Done from "../../../images/done.png";
-
-export const OrderDetails = ({data}) => {
+import { useSelector } from 'react-redux';
+export const OrderDetails = () => {
+    const orderNumber = useSelector(store => store.orderInfo.orderNumber)
     return (
         <>
             <div className={`pt-30 text_type_digits-large ${modalStyles.digitShadow}`}>
-                {data.order.number}
+                {orderNumber}
             </div>
             <div className="text_type_main-medium pt-8">
                 идентификатор заказа
@@ -24,12 +25,4 @@ export const OrderDetails = ({data}) => {
     )
 }
 
-OrderDetails.propTypes = {
-    data: {
-        success: PropTypes.bool.isRequired,
-        name: PropTypes.string.isRequired,
-        order: {
-            number: PropTypes.number.isRequired
-        }
-    }
-}
+
