@@ -28,5 +28,4 @@ export const Menu =  React.forwardRef(({ items}, ref) => {
 
 Menu.propTypes = {
     items: PropTypes.arrayOf(propDefinition).isRequired,
-    openModal: PropTypes.func.isRequired,
 }

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import modalStyles from '../../../assets/order-details.module.css';
 import Done from "../../../images/done.png";
 import { useSelector } from 'react-redux';

@@ -1,28 +1,27 @@
-import React, {useMemo} from "react";
+import React, { useMemo, useRef } from "react";
 import styles from "../../assets/styles.module.css";
 import burgerStyles from '../../assets/burger-constructor/burger-constructor.module.css';
 import { DragIcon, CurrencyIcon, Button, ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import { TopDown } from "./components/top-down";
 import { OrderDetails } from "./components/order-details";
 import { Modal } from '../modal/modal';
-import { useDrop } from "react-dnd";
+import { useDrop, useDrag } from "react-dnd";
 import { sentOrderRequest } from "../../services/actions/order";
 import { useDispatch, useSelector } from "react-redux";
-import { addBuns, addIngredient } from "../../services/actions/ingredients-constructor";
-
+import { addBuns, addIngredient, deleteIngredient, move, deleteAll } from "../../services/actions/ingredients-constructor";
+import uuid from 'react-uuid';
 
 export const BurgerConstructor = () => {
 
     const dispatch = useDispatch();
-
-    const ingredients = useSelector(store => store.ingredientsInfo.ingredients)
+    const ref = useRef(null)
     const [modalVisible, setModalVisible] = React.useState(false)
 
     const _ingredients = useSelector(store => store.ingredientsConstructor.ingredients)
     const _bun = useSelector(store => store.ingredientsConstructor.bun)
 
 
-   
+
     const openModal = () => {
         if (!window.getSelection().toString()) {
             setModalVisible(true)
@@ -35,24 +34,28 @@ export const BurgerConstructor = () => {
 
     const totalCount = useMemo(() => {
         let sum = 0;
-        if(_ingredients){
+        if (_ingredients) {
             _ingredients.forEach(item => {
                 sum = sum + item.price
             });
         }
-        if(_bun){
+        if (_bun) {
             sum = sum + _bun.price * 2
-        } 
+        }
         return sum;
-    },[_ingredients,_bun])
+    }, [_ingredients, _bun])
 
     const ingredientIds = _ingredients.map((elem) => (elem._id));
 
     const onOrder = () => {
         dispatch(sentOrderRequest(ingredientIds));
+        dispatch(deleteAll())
         openModal();
     }
 
+    /**
+     * Из ингредиентов в конструктор
+     */
     const [, dropTarget] = useDrop({
         accept: 'ingredients',
         drop(item) {
@@ -65,37 +68,56 @@ export const BurgerConstructor = () => {
                 /**
                  * Добавление без ограничений
                  */
-                if(_bun){
-                    dispatch(addIngredient({ ...item, id: 555 }))
-                }     
+                if (_bun) {
+                    dispatch(addIngredient({ ...item, id: uuid() }))
+                }
             }
         }
     })
 
+    /**dnd конструктора */
+ 
+
+
+    const [currentElement, setCurrentElement] = React.useState({
+        id: null,
+        idx: null
+    });
+    const handleHover = (id, idx) => {
+        console.log(id, idx)
+        setCurrentElement({ id: id, idx: idx })
+    }
+
     return (
-        <div className={`${styles.col} ${burgerStyles.maxWidth}`}  ref={dropTarget}>
+        <div className={`${styles.col} ${burgerStyles.maxWidth}`} ref={dropTarget}>
             <div className="mt-25">
             </div>
             {_bun && _ingredients ?
-
-
                 <div>
                     <TopDown prop={_bun} >
                         <div className={` ${burgerStyles.container} custom-scroll`}>
                             {
-                                _ingredients.map((element) => {
+                                _ingredients.map((element, idx) => {
                                     return (
-                                        <div key={element._id} className={`${styles.snapStart} ${styles.dFlex} ${styles.verticalCenter} pb-4`} >
+                                        <div
+                                            key={uuid()}
+                                            className={`${styles.snapStart} ${styles.dFlex} ${styles.verticalCenter} pb-4`}
+                                            
+                                            onMouseEnter={() => { handleHover(element.id, idx) }} >
+
                                             <span className="pr-2"><DragIcon /></span>
 
-                                            <ConstructorElement thumbnail={element.image} price={element.price} text={element.name} />
+                                            <ConstructorElement
+                                                thumbnail={element.image}
+                                                price={element.price}
+                                                text={element.name}
+                                                handleClose={() => dispatch(deleteIngredient(element.id))} />
                                         </div>
                                     )
                                 })
                             }
                         </div>
                     </TopDown>
-
                     <div className={`pt-4 ${styles.row}`}>
                         <div className={`text_type_digits-medium ${burgerStyles.ml35}`}>
                             <span >

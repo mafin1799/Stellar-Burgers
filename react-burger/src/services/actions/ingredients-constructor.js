@@ -19,9 +19,8 @@ export const deleteIngredient = (payload) => ({
     payload
 })
 
-export const deleteAll = (payload) => ({
-    type: DELETE_ALL,
-    payload
+export const deleteAll = () => ({
+    type: DELETE_ALL
 })
 
 export const move = (payload) => ({

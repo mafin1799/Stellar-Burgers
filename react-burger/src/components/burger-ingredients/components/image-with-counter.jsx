@@ -5,11 +5,12 @@ export const ImageWithCounter = ({ imageUrl, counter }) => {
     return (
         <div className={styles.image}>
             <img src={imageUrl} className="pl-4 pr-4 pb-1"  alt="Изображение" />
-            <span className="counter default">
-                <div className="counter__num">
+            {counter > 0 &&  <span className="counter default">
+
+               <div className="counter__num">
                     {counter}
                 </div>
-            </span>
+            </span>}
         </div>
     );
 };

@@ -20,6 +20,5 @@ export const MenuGroup = ({ type, data }) => {
 
 MenuGroup.propTypes = {
     type: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(propDefinition).isRequired,
-    openModal: PropTypes.func.isRequired
+    data: PropTypes.arrayOf(propDefinition).isRequired
 }
