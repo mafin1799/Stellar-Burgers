@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useState } from "react";
 import styles from "../../assets/styles.module.css";
 import burgerStyles from '../../assets/burger-constructor/burger-constructor.module.css';
 import { DragIcon, CurrencyIcon, Button, ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -8,13 +8,14 @@ import { Modal } from '../modal/modal';
 import { useDrop, useDrag } from "react-dnd";
 import { sentOrderRequest } from "../../services/actions/order";
 import { useDispatch, useSelector } from "react-redux";
-import { addBuns, addIngredient, deleteIngredient, move, deleteAll } from "../../services/actions/ingredients-constructor";
+import { addBuns, addIngredient, move, deleteAll } from "../../services/actions/ingredients-constructor";
 import uuid from 'react-uuid';
+
+import { DraggableElement } from "./components/constructor-element";
 
 export const BurgerConstructor = () => {
 
     const dispatch = useDispatch();
-    const ref = useRef(null)
     const [modalVisible, setModalVisible] = React.useState(false)
 
     const _ingredients = useSelector(store => store.ingredientsConstructor.ingredients)
@@ -74,45 +75,34 @@ export const BurgerConstructor = () => {
             }
         }
     })
-
-    /**dnd конструктора */
- 
-
-
-    const [currentElement, setCurrentElement] = React.useState({
-        id: null,
-        idx: null
-    });
-    const handleHover = (id, idx) => {
-        console.log(id, idx)
-        setCurrentElement({ id: id, idx: idx })
+    const [currentId,setCurrentId] = useState(null);
+    const handleHover = (id) => {
+        setCurrentId(id);
     }
+    const [{isHover}, dropTargetInside] = useDrop({
+        accept: 'ingredient',
+        drop(item){
+            dispatch(move({dragId:item.id, targetId: currentId}))
+        },
+        collect: monitor => ({
+            isHover: monitor.isOver(),
+        })
+    })
 
     return (
         <div className={`${styles.col} ${burgerStyles.maxWidth}`} ref={dropTarget}>
             <div className="mt-25">
             </div>
             {_bun && _ingredients ?
-                <div>
+                <div ref={dropTargetInside}>
                     <TopDown prop={_bun} >
                         <div className={` ${burgerStyles.container} custom-scroll`}>
                             {
                                 _ingredients.map((element, idx) => {
                                     return (
-                                        <div
-                                            key={uuid()}
-                                            className={`${styles.snapStart} ${styles.dFlex} ${styles.verticalCenter} pb-4`}
-                                            
-                                            onMouseEnter={() => { handleHover(element.id, idx) }} >
-
-                                            <span className="pr-2"><DragIcon /></span>
-
-                                            <ConstructorElement
-                                                thumbnail={element.image}
-                                                price={element.price}
-                                                text={element.name}
-                                                handleClose={() => dispatch(deleteIngredient(element.id))} />
-                                        </div>
+                                        <div onMouseEnter={() => { handleHover(element.id) }}>
+                                        <DraggableElement id={uuid()} data={element} />
+                                        </div>    
                                     )
                                 })
                             }
