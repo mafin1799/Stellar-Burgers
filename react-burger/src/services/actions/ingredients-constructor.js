@@ -1,12 +1,17 @@
+import uuid from "react-uuid";
+
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const ADD_BUNS = 'ADD_BUNS';
 export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 export const MOVE = 'MOVE';
 export const DELETE_ALL = 'DELETE_ALL';
 
-export const addIngredient = (payload) => ({
+export const addIngredient = (item) => ({
     type: ADD_INGREDIENT,
-    payload
+    payload: {
+        ...item,
+        unique: uuid()
+    }
 })
 
 export const addBuns = (payload) => ({

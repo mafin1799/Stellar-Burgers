@@ -79,7 +79,7 @@ export const BurgerConstructor = () => {
                             {
                                 _ingredients.map((element) => {
                                     return (
-                                        <div key={uuid()}>
+                                        <div key={element.unique}>
                                             <DraggableElement data={element} />
                                         </div>
                                     )

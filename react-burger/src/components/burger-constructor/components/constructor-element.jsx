@@ -1,5 +1,4 @@
 import styles from "../../../assets/styles.module.css";
-import uuid from "react-uuid";
 import { DragIcon, ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
@@ -48,7 +47,6 @@ export const DraggableElement = ({ data }) => {
         <div
             style={{ opacity }}
             ref={ref}
-            key={uuid()}
             className={`${styles.snapStart} ${styles.dFlex} ${styles.verticalCenter} pb-4`}>
 
             <span className="pr-2"><DragIcon /></span>

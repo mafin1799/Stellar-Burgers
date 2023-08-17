@@ -1,6 +1,6 @@
 import AppHeader from '../app-header/app-header';
 import { BurgerIngredients } from '../burger-ingredients/burger-ingredients';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { BurgerConstructor } from '../burger-constructor/burger-constructor';
 import styles from "../../assets/styles.module.css"
 import { useDispatch, useSelector } from "react-redux";
