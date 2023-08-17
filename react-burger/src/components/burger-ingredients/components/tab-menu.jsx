@@ -1,5 +1,7 @@
 import styles from "../../../assets/burger-ingredients/tab.module.css";
+import PropTypes from 'prop-types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+
 
 export const TabMenu = ({currentTab}) => {
     return (
@@ -26,4 +28,8 @@ export const TabMenu = ({currentTab}) => {
         </div>
 
     )
+}
+
+TabMenu.propTypes = {
+    currentTab: PropTypes.string.isRequired
 }

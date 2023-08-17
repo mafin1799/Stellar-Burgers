@@ -1,17 +1,19 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
+import uuid from 'react-uuid';
 import styles from "../../assets/styles.module.css";
 import burgerStyles from '../../assets/burger-constructor/burger-constructor.module.css';
-import { DragIcon, CurrencyIcon, Button, ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { TopDown } from "./components/top-down";
 import { OrderDetails } from "./components/order-details";
 import { Modal } from '../modal/modal';
-import { useDrop, useDrag } from "react-dnd";
+import { useDrop } from "react-dnd";
 import { sentOrderRequest } from "../../services/actions/order";
 import { useDispatch, useSelector } from "react-redux";
-import { addBuns, addIngredient, move, deleteAll } from "../../services/actions/ingredients-constructor";
-import uuid from 'react-uuid';
-
+import { addBuns, addIngredient, deleteAll } from "../../services/actions/ingredients-constructor";
 import { DraggableElement } from "./components/constructor-element";
+
+
+
 
 export const BurgerConstructor = () => {
 
@@ -54,39 +56,16 @@ export const BurgerConstructor = () => {
         openModal();
     }
 
-    /**
-     * Из ингредиентов в конструктор
-     */
     const [, dropTarget] = useDrop({
         accept: 'ingredients',
         drop(item) {
             if (item.type === 'bun') {
-                /**
-                 * Добавить 2 булки в контейнер
-                 */
                 dispatch(addBuns(item));
-            } else {
-                /**
-                 * Добавление без ограничений
-                 */
-                if (_bun) {
-                    dispatch(addIngredient({ ...item, id: uuid() }))
-                }
+            } else if (_bun) {
+                dispatch(addIngredient({ ...item, id: uuid() }))
             }
         }
-    })
-    const [currentId,setCurrentId] = useState(null);
-    const handleHover = (id) => {
-        setCurrentId(id);
-    }
-    const [{isHover}, dropTargetInside] = useDrop({
-        accept: 'ingredient',
-        drop(item){
-            dispatch(move({dragId:item.id, targetId: currentId}))
-        },
-        collect: monitor => ({
-            isHover: monitor.isOver(),
-        })
+
     })
 
     return (
@@ -94,15 +73,15 @@ export const BurgerConstructor = () => {
             <div className="mt-25">
             </div>
             {_bun && _ingredients ?
-                <div ref={dropTargetInside}>
+                <div>
                     <TopDown prop={_bun} >
                         <div className={` ${burgerStyles.container} custom-scroll`}>
                             {
-                                _ingredients.map((element, idx) => {
+                                _ingredients.map((element) => {
                                     return (
-                                        <div onMouseEnter={() => { handleHover(element.id) }}>
-                                        <DraggableElement id={uuid()} data={element} />
-                                        </div>    
+                                        <div key={uuid()}>
+                                            <DraggableElement data={element} />
+                                        </div>
                                     )
                                 })
                             }

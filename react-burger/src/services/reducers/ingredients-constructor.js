@@ -20,18 +20,21 @@ export const ingredientsConstructorReducer = (state = ingredientsDefault, action
             {
                 console.log(action)
 
-                /**
-                 * Тут нужна механика swap элементов с соответствующими id
-                 */
-                /*return {
+                const newState = [...state.ingredients];
+
+                const index1 = state.ingredients.findIndex(item => item.id === action.payload.dragId)
+                const index2 = state.ingredients.findIndex(item => item.id === action.payload.targetId)
+
+                if(index1 !== -1 && index2 !== -1){
+                   const temp = newState[index1];
+                   newState[index1] = newState[index2];
+                   newState[index2] = temp
+                }
+
+                return{
                     ...state,
-                    ingredients: update(state.ingredients, {
-                        $splice: [
-                            [action.payload.dragIndex, 1],
-                            [action.payload.hoverIndex, 0, state.ingredients[action.payload.dragIndex]],
-                        ],
-                    }),
-                }*/
+                    ingredients: newState,
+                }
             }
         default:
             return state;

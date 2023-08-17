@@ -1,11 +1,11 @@
 import styles from "../../../assets/burger-ingredients/card.module.css"
-import PropTypes from 'prop-types'
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ImageWithCounter } from "./image-with-counter";
 import { propDefinition } from "../../../utils/propDefenitions";
 import { addIngredientDetails } from "../../../services/actions/ingredient-details";
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from "react-dnd";
+
 export const MenuCard = ({ card }) => {
   
     const dispatch = useDispatch();
