@@ -15,6 +15,7 @@ export const MenuCard = ({ card }) => {
             dispatch(addIngredientDetails(card));
         }
     }
+
     const _count = useSelector(store => {
         if( card.type === 'bun' && store.ingredientsConstructor.bun && store.ingredientsConstructor.bun._id === card._id){
             return 2

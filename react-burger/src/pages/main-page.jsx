@@ -6,8 +6,9 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { useDispatch, useSelector } from "react-redux";
 import {useEffect} from 'react'
 import { sentIngredientsRequest } from '../services/actions/ingredients-data';
+import { checkToken } from '../utils/check-access';
 export const MainPage = () => {
-
+    console.log(checkToken());
     const dispatch = useDispatch();
     const loaded = useSelector(store => store.ingredientsInfo.ingredientsLoaded)
     useEffect(() => {
