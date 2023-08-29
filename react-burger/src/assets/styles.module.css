@@ -39,7 +39,7 @@
 }
 
 .appCenter{
-    width: calc(100vw - 19.7% - 19.7% + 40px);
+    /*width: calc(100vw - 19.7% - 19.7% + 40px);*/
     justify-content: center
 }
 

@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import styles from "../../../assets/burger-ingredients/menu.module.css";
-import { useRef, useEffect } from "react";
+import React from "react";
 import { groupDataByType } from "../../../utils/groupDataByType";
 import { MenuGroup } from "./menu-group";
 import { propDefinition } from "../../../utils/propDefenitions";
 
 
-export const Menu = ({ items, currentTab, openModal}) => {
-    const menuRef = useRef(null);
-    
+export const Menu =  React.forwardRef(({ items}, ref) => {
     const groupedItemd = groupDataByType(items)
     const desiredOrder = ['bun', 'sauce', 'main'];
     const reorderedItems = {};
@@ -16,31 +14,18 @@ export const Menu = ({ items, currentTab, openModal}) => {
     desiredOrder.forEach((type) => {
         reorderedItems[type] = groupedItemd[type]
     })
-    useEffect(() => {
-        scrollToGroup(currentTab);
-    }, [currentTab]);
-
-    const scrollToGroup = (group) => {
-        if (menuRef.current) {
-            const groupElement = document.getElementById(group);
-            if (groupElement) {
-                groupElement.scrollIntoView({ behavior: "smooth" });
-            }
-        }
-    };
+  
     return (
-        <div className={` ${styles.menu} pt-10 custom-scroll`} ref={menuRef} >
+        <div className={` ${styles.menu} pt-10 custom-scroll`}  ref={ref}>
             {Object.entries(reorderedItems).map(([type, group]) => {
                 return (
-                    <MenuGroup key={type} type={type} data={group} openModal={openModal}/>
+                    <MenuGroup key={type} id={type} type={type} data={group}/>
                 )
             })}
         </div>
     )
-}
+})
 
 Menu.propTypes = {
     items: PropTypes.arrayOf(propDefinition).isRequired,
-    currentTab: PropTypes.string.isRequired,
-    openModal: PropTypes.func.isRequired,
 }

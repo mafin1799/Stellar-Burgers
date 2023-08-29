@@ -1,41 +1,58 @@
-import PropTypes from 'prop-types';
 import styles from "../../assets/styles.module.css";
 import burgerStyles from '../../assets/burger-ingredients/burger-ingredients.module.css';
 import React, { useState } from "react";
 import { Menu } from "./components/menu";
 import { TabMenu } from "./components/tab-menu";
-import { propDefinition } from "../../utils/propDefenitions";
 import { IngredientDetails } from "./components/ingredient-details";
 import { Modal } from '../modal/modal';
-import { IngredientsContext } from '../services/appContext';
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteIngredientDetails } from "../../services/actions/ingredient-details";
+
 export const BurgerIngredients = () => {
-  const [modalVisible, setModalVisible] = React.useState(false)
-  const [currentIngredient, setCurrentIngredient] = useState(null);
-  const ingredients = React.useContext(IngredientsContext)
-  const openModal = (item) => {
-    setModalVisible(true)
-    setCurrentIngredient(item)
-  }
+
+  const dispatch = useDispatch()
+  const currentIngredient = useSelector(store => store.ingredientsDetails.details);
+  const ingredients = useSelector(store => store.ingredientsInfo.ingredients)
+  const tabOrder = ['bun', 'sauce', 'main']
+  const [currentTab, setCurrentTab] = useState('bun');
 
   const closeModal = () => {
-    setModalVisible(false);
-    setCurrentIngredient(null)
+    dispatch(deleteIngredientDetails())
+    console.log(currentIngredient)
   }
 
-  const [currentTab, setCurrentTab] = React.useState("buns"); // Используем стейт для хранения текущей вкладки
+  const handleScroll = () => {
+    const contentGroups = document.querySelectorAll('.group');
+    let closestIdx = -1;
+    let closestDistanse = Infinity;
+    for (let i = 0; i < contentGroups.length; i++) {
+      const contentGroup = contentGroups[i];
+      const rect = contentGroup.getBoundingClientRect();
+      const distance = ((rect.top) * (rect.top) + rect.left * rect.left);
+      if (distance < closestDistanse) {
+        closestDistanse = distance;
+        closestIdx = i;
+      }
+    }
+    setCurrentTab(tabOrder[closestIdx]);
+  }
+  const containerRef = React.useRef();
+  React.useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.addEventListener('scroll', handleScroll);
+    }
 
-  const handleTabChange = (tabValue) => {
-    setCurrentTab(tabValue);
-  };
+    return () => containerRef.current && containerRef.current.removeEventListener('scroll', handleScroll);
+  })
 
   return (
     <div className={`${styles.col} ${burgerStyles.maxWidth}`}  >
-      <TabMenu onTabChange={handleTabChange} />
-      <Menu items={ingredients} currentTab={currentTab} openModal={openModal} />
+      <TabMenu currentTab={currentTab} setCurrentTab={setCurrentTab} />
+      <Menu items={ingredients} ref={containerRef} />
       {
-        modalVisible &&
+        currentIngredient &&
         <Modal title={'Детали ингредиента'} onClose={closeModal}>
-          <IngredientDetails data={ currentIngredient } />
+          <IngredientDetails data={currentIngredient} />
         </Modal>
       }
     </div>
