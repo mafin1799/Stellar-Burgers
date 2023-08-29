@@ -3,18 +3,12 @@ import { BurgerConstructor } from '../components/burger-constructor/burger-const
 import styles from "../assets/styles.module.css"
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { useDispatch, useSelector } from "react-redux";
-import {useEffect} from 'react'
-import { sentIngredientsRequest } from '../services/actions/ingredients-data';
-import { checkToken } from '../utils/check-access';
-export const MainPage = () => {
-    console.log(checkToken());
-    const dispatch = useDispatch();
-    const loaded = useSelector(store => store.ingredientsInfo.ingredientsLoaded)
-    useEffect(() => {
-      dispatch(sentIngredientsRequest())
-    }, [dispatch])
+import { useSelector } from "react-redux";
 
+export const MainPage = () => {
+   
+    const loaded = useSelector(store => store.ingredientsInfo.ingredientsLoaded)
+    
     return(
         <div className={`${styles.row} ${styles.container} ${styles.appCenter}`}>
         {loaded &&

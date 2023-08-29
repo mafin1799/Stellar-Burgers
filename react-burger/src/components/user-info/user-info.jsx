@@ -29,10 +29,10 @@ export const UserInfo = () => {
 
     useEffect(() => {
         if (checkToken()) {
-            console.log("ТОКЕН СВЕЖИЙ")
+          
             dispatch(sentGetUserInfo())
         } else {
-            console.log("ТОКЕН ПРОТУХ")
+          
             dispatch(sentRefreshRequest())
         }
         if(refresh){
@@ -46,7 +46,7 @@ export const UserInfo = () => {
     }, [refresh, userInfoSuccess])
 
     const submitUserInfo = () => {
-       console.log(email, password, name)
+      
        dispatch(sentSetUserInfo(email, name, password))
     }
 

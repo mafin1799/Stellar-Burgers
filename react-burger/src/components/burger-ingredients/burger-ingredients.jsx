@@ -3,10 +3,8 @@ import burgerStyles from '../../assets/burger-ingredients/burger-ingredients.mod
 import React, { useState } from "react";
 import { Menu } from "./components/menu";
 import { TabMenu } from "./components/tab-menu";
-import { IngredientDetails } from "./components/ingredient-details";
-import { Modal } from '../modal/modal';
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteIngredientDetails } from "../../services/actions/ingredient-details";
+
 
 export const BurgerIngredients = () => {
 
@@ -16,10 +14,7 @@ export const BurgerIngredients = () => {
   const tabOrder = ['bun', 'sauce', 'main']
   const [currentTab, setCurrentTab] = useState('bun');
 
-  const closeModal = () => {
-    dispatch(deleteIngredientDetails())
-    console.log(currentIngredient)
-  }
+ 
 
   const handleScroll = () => {
     const contentGroups = document.querySelectorAll('.group');
@@ -49,12 +44,6 @@ export const BurgerIngredients = () => {
     <div className={`${styles.col} ${burgerStyles.maxWidth}`}  >
       <TabMenu currentTab={currentTab} setCurrentTab={setCurrentTab} />
       <Menu items={ingredients} ref={containerRef} />
-      {
-        currentIngredient &&
-        <Modal title={'Детали ингредиента'} onClose={closeModal}>
-          <IngredientDetails data={currentIngredient} />
-        </Modal>
-      }
     </div>
   );
 }

@@ -54,3 +54,11 @@
 .middleCol{
     max-width: 40px;
 }
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    height: calc(100vh - 88px);
+}

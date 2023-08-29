@@ -8,6 +8,7 @@ import { sentPasswordResetResetRequest } from "../services/actions/reset-passwor
 export const ResetPasswordPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
     const loaded = useSelector(store => store.resetPassword.resetSuccess)
     const [password, setPassword] = useState('');
     const [code, setCode] = useState('');
@@ -17,8 +18,12 @@ export const ResetPasswordPage = () => {
     }
 
     useEffect(() => {
+        if(!localStorage.getItem('forgotVisited')){
+            navigate('/forgot-password');
+        }
         if(loaded){
             navigate('/login');
+            localStorage.removeItem('forgotVisited')
         }
     }, [loaded])
     return (

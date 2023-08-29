@@ -5,10 +5,12 @@ import { propDefinition } from "../../../utils/propDefenitions";
 import { addIngredientDetails } from "../../../services/actions/ingredient-details";
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from "react-dnd";
+import { Link, useLocation } from "react-router-dom";
 
 export const MenuCard = ({ card }) => {
   
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const handleClick = () => {
         if (!window.getSelection().toString()) {
@@ -31,7 +33,7 @@ export const MenuCard = ({ card }) => {
     });
 
     return (
-        <div className={`pt-6 pb-10 pl-4 pr-4 ${styles.card}`} ref={dragRef} onClick={handleClick}>
+        <Link to={`/ingredients/${card._id}`} state={{ background: location}} className={`pt-6 pb-10 pl-4  text_color_primary pr-4 ${styles.card}`} ref={dragRef} onClick={handleClick}>
             <ImageWithCounter imageUrl={card.image} counter={_count} />
             <div className={`text_type_digits-default ${styles.center}`}>
                 {card.price}
@@ -40,7 +42,7 @@ export const MenuCard = ({ card }) => {
             <div className={`text_type_main-default ${styles.center}`}>
                 {card.name}
             </div>
-        </div>
+        </Link>
     )
 }
 
