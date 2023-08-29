@@ -11,11 +11,9 @@ const NavMenu = ({ children }) => {
         </div>
     )
 }
-
 NavMenu.propTypes = {
     children: PropTypes.node.isRequired
 }
-
 const Navigate = ({ children }) => {
     return (
         <div className="col d-flex align-items-center justify-content-start">
@@ -26,7 +24,6 @@ const Navigate = ({ children }) => {
     )
 
 }
-
 Navigate.propTypes = {
     children: PropTypes.node.isRequired
 }
@@ -78,5 +75,4 @@ const AppHeader = () => {
         </div>
     )
 }
-
 export default AppHeader;

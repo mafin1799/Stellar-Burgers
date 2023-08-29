@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import styles from '../../../assets/styles.module.css';
 import { propDefinition } from "../../../utils/propDefenitions";
-
+import PropTypes from 'prop-types';
 export const IngredientDetails = ({ data }) => {
 
-    const {id} = useParams();
+    const { id } = useParams();
     const info = data.find(elem => elem._id === id)
     return (
         <>
@@ -45,5 +45,5 @@ export const IngredientDetails = ({ data }) => {
 }
 
 IngredientDetails.propTypes = {
-    data: propDefinition.isRequired
+    data: PropTypes.arrayOf(propDefinition).isRequired
 }

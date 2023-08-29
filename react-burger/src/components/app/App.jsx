@@ -18,19 +18,12 @@ import { IngredientDetails } from '../burger-ingredients/components/ingredient-d
 import { sentIngredientsRequest } from '../../services/actions/ingredients-data';
 import { deleteIngredientDetails } from "../../services/actions/ingredient-details";
 export const App = () => {
-
-
   const dispatch = useDispatch();
-
   const userInfo = useSelector(store => store.getUserInfo.user)
   useEffect(() => {
     dispatch(sentIngredientsRequest())
-
-  }
-    , [dispatch])
-
+  }, [dispatch])
   const navigate = useNavigate();
-
   function close() {
     navigate(-1);
     dispatch(deleteIngredientDetails)
@@ -40,14 +33,10 @@ export const App = () => {
 
   const ingredients = useSelector(store => store.ingredientsInfo.ingredients);
   return (
-
-
     <>
       <AppHeader />
       {!ingredients && userInfo ? <p>Загрузка</p>
         : <Routes location={background || location}>
-
-
           <Route path='/' element={<MainPage />} />
           <Route path='/login' element={<ProtectedRoute guest><LoginPage /> </ProtectedRoute>} />
           <Route path='/register' element={<ProtectedRoute guest><RegistrationPage /></ProtectedRoute>} />

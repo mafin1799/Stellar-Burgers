@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom"
 import { ACCESS_TOKEN_ALIAS } from "../../utils/const"
 import { getCookie } from "../../utils/cookies"
-
+import PropTypes from 'prop-types';
 export const ProtectedRoute = ({ guest = false, children }) => {
     const isAuth = getCookie(ACCESS_TOKEN_ALIAS)
     const location = useLocation();
@@ -17,4 +17,10 @@ export const ProtectedRoute = ({ guest = false, children }) => {
     }
 
     return children;
+}
+
+
+ProtectedRoute.propTypes = {
+    guest: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired
 }
