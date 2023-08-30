@@ -11,12 +11,14 @@ import { sentOrderRequest } from "../../services/actions/order";
 import { useDispatch, useSelector } from "react-redux";
 import { addBuns, addIngredient, deleteAll } from "../../services/actions/ingredients-constructor";
 import { DraggableElement } from "./components/constructor-element";
+import { checkToken } from "../../utils/check-access";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 export const BurgerConstructor = () => {
-
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const [modalVisible, setModalVisible] = React.useState(false)
 
@@ -51,9 +53,14 @@ export const BurgerConstructor = () => {
     const ingredientIds = _ingredients.map((elem) => (elem._id));
 
     const onOrder = () => {
-        dispatch(sentOrderRequest(ingredientIds));
-        dispatch(deleteAll())
-        openModal();
+        if(checkToken()){
+            dispatch(sentOrderRequest(ingredientIds));
+            dispatch(deleteAll())
+            openModal();
+        }else{
+            navigate('/login')
+        }
+        
     }
 
     const [, dropTarget] = useDrop({
@@ -94,7 +101,7 @@ export const BurgerConstructor = () => {
                             </span>
                         </div>
                         <div className={burgerStyles.mlAuto}>
-                            <Button type="primary" htmlType="button" onClick={onOrder}>
+                            <Button type="primary" disabled={_ingredients.length === 0} htmlType="button" onClick={onOrder}>
                                 Оформить заказ
                             </Button>
                         </div>

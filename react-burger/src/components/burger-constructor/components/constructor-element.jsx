@@ -38,11 +38,8 @@ export const DraggableElement = ({ data }) => {
         },
         collect() { }
     })
-
     dragRef(dropTargetInside(ref))
-
     const opacity = isDrag ? 0 : 1;
-
     return (
         <div
             style={{ opacity }}
@@ -59,7 +56,6 @@ export const DraggableElement = ({ data }) => {
         </div>
     )
 }
-
 DraggableElement.propTypes = {
     data: propDefinition.isRequired
 }
