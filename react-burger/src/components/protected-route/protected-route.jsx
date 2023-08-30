@@ -6,16 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { sentGetUserInfo } from "../../services/actions/get-user-info";
 export const ProtectedRoute = ({ guest = false, children }) => {
+     /**
+     * Проверим свежесть токена, отправив запрос за пользовательскими данными
+     */
     const isAuth = useSelector(store => store.getUserInfo.userSuccess)
-    const location = useLocation();
     const dispatch = useDispatch();
-    
     useEffect(() => {
         dispatch(sentGetUserInfo())
     },[dispatch, isAuth])
-    /**
-     * Проверим свежесть токена, отправив запрос за пользовательскими данными
-     */
+    const location = useLocation();
+   
     const from = location.state?.from.pathname || '/';
 
     if (!guest && !isAuth) {
