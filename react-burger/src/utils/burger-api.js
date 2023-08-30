@@ -1,5 +1,5 @@
 import { ACCESS_TOKEN_ALIAS, STELLAR_BERGER_API } from "./const"
-import { checkResponse } from "./checkResponse"
+import { checkResponse, fetchWithRefresh } from "./checkResponse"
 import { getCookie } from "./cookies"
 import { checkToken } from "./check-access"
 
@@ -102,7 +102,7 @@ export const getUserInfo = () => {
       .then(checkResponse)
 }
 
-export const setUserInfo = (name, email, password) => {
+/*export const setUserInfo = (name, email, password) => {
   return fetch(`${STELLAR_BERGER_API}/auth/user`, {
     method: 'PATCH',
     body: JSON.stringify({name:name, email:email, password:password}),
@@ -112,4 +112,16 @@ export const setUserInfo = (name, email, password) => {
     }
   })
     .then(checkResponse)
+}*/
+
+export const setUserInfo = (name, email, password) => {
+  let options = {
+    method: 'PATCH',
+    body: JSON.stringify({name:name, email:email, password:password}),
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: getCookie(ACCESS_TOKEN_ALIAS)
+    }
+  }
+  return fetchWithRefresh(`${STELLAR_BERGER_API}/auth/user`, options).then(checkResponse)
 }

@@ -53,7 +53,6 @@ export const BurgerConstructor = () => {
     const ingredientIds = _ingredients.map((elem) => (elem._id));
 
     const onOrder = () => {
-        console.log(12345)
         if(checkToken()){
             dispatch(sentOrderRequest(ingredientIds));
             dispatch(deleteAll())

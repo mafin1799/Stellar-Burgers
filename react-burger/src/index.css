@@ -73,3 +73,7 @@ code {
   justify-content: center !important;
   height: 100vh;
 }
+
+.headerOffset{
+  height: 64px;
+}

@@ -25,8 +25,8 @@ export const sentAuthRequest = (email, password, goToMain) => (dispatch) => {
     getAuth(email, password)
         .then(response => {
             if (response && response.success) {
-                setCookie('accessToken', response.accessToken)
-                localStorage.setItem('accessTokenExpires',  setExpires(1200) )
+                setCookie('accessToken', response.accessToken,  {expires: 1200})
+                
                 localStorage.setItem('refreshToken', response.refreshToken)
                 dispatch(getAuthSuccess(response.user))
                 goToMain();

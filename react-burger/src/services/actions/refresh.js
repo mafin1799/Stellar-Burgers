@@ -25,8 +25,8 @@ export const sentRefreshRequest = () => (dispatch) => {
         .then(response => {
             console.log(response)
             if (response && response.success) {
-                setCookie('accessToken', response.accessToken)
-                localStorage.setItem('accessTokenExpires',  setExpires(1200) )
+                setCookie('accessToken', response.accessToken, {expires: 1200})
+               
                 localStorage.setItem('refreshToken', response.refreshToken)
                 dispatch(getRefreshSuccess(response.user))
             }

@@ -34,8 +34,3 @@ export function deleteCookie(name) {
     })
   }
 
-export const setExpires = (time) => {
-    const d = new Date();
-    d.setTime(d.getTime() + time * 1000);
-    return d.getTime();
-}
