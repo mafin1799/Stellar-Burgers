@@ -2,8 +2,8 @@ import uuid from "react-uuid";
 import { TIngredient } from "../../types/types";
 
 type IngredientMove = {
-    dragId: number,
-    targetId: number
+    dragId: string,
+    targetId: string
 };
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';

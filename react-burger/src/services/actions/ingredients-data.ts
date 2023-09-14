@@ -7,14 +7,14 @@ export const INGREDIENTS_SUCCESS = 'INGREDIENTS_SUCCESS';
 export const INGREDIENTS_ERROR = 'INGREDIENTS_ERROR';
 
 export interface IDataRequest { readonly type: typeof INGREDIENTS_REQUEST; };
-export interface IDataSuccess { readonly type: typeof INGREDIENTS_SUCCESS; payload: TIngredient; };
+export interface IDataSuccess { readonly type: typeof INGREDIENTS_SUCCESS; payload: Array<TIngredient>; };
 export interface IDataError { readonly type: typeof INGREDIENTS_ERROR; };
 
-export type TIngredientsData = IDataRequest | IDataSuccess | IDataError;
+export type TIngredientsDataActions = IDataRequest | IDataSuccess | IDataError;
 
 
 export const getIngredientsRequest = (): IDataRequest => ({ type: INGREDIENTS_REQUEST });
-export const getIngredientsSuccess = (payload: TIngredient): IDataSuccess => ({ type: INGREDIENTS_SUCCESS, payload });
+export const getIngredientsSuccess = (payload: Array<TIngredient>): IDataSuccess => ({ type: INGREDIENTS_SUCCESS, payload });
 export const getIngredientsError = (): IDataError => ({ type: INGREDIENTS_ERROR });
 
 export const sentIngredientsRequest = () => (dispatch: TDispatch) => {

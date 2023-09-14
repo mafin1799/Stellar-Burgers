@@ -1,6 +1,5 @@
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import { BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
-import PropTypes from 'prop-types';
 import { NavLink } from "react-router-dom";
 import style from "../../assets/header/app-header.module.css"
 
@@ -11,9 +10,7 @@ const NavMenu = ({ children }) => {
         </div>
     )
 }
-NavMenu.propTypes = {
-    children: PropTypes.node.isRequired
-}
+
 const Navigate = ({ children }) => {
     return (
         <div className="col d-flex align-items-center justify-content-start">
@@ -23,9 +20,6 @@ const Navigate = ({ children }) => {
         </div>
     )
 
-}
-Navigate.propTypes = {
-    children: PropTypes.node.isRequired
 }
 
 const AppHeader = () => {

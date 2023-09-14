@@ -1,20 +1,19 @@
 import styles from "../../assets/styles.module.css";
 import burgerStyles from '../../assets/burger-ingredients/burger-ingredients.module.css';
-import React, { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu } from "./components/menu";
 import { TabMenu } from "./components/tab-menu";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from '../../types/hooks'
+import React from "react";
 
 
 export const BurgerIngredients = () => {
 
-  const dispatch = useDispatch()
-  const currentIngredient = useSelector(store => store.ingredientsDetails.details);
   const ingredients = useSelector(store => store.ingredientsInfo.ingredients)
   const tabOrder = ['bun', 'sauce', 'main']
   const [currentTab, setCurrentTab] = useState('bun');
 
- 
+
 
   const handleScroll = () => {
     const contentGroups = document.querySelectorAll('.group');
@@ -31,20 +30,26 @@ export const BurgerIngredients = () => {
     }
     setCurrentTab(tabOrder[closestIdx]);
   }
-  const containerRef = React.useRef();
-  React.useEffect(() => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+
     if (containerRef.current) {
       containerRef.current.addEventListener('scroll', handleScroll);
     }
-
     return () => containerRef.current && containerRef.current.removeEventListener('scroll', handleScroll);
-  })
+  }, [])
 
   return (
-    <div className={`${styles.col} ${burgerStyles.maxWidth}`}  >
-      <TabMenu currentTab={currentTab} setCurrentTab={setCurrentTab} />
-      <Menu items={ingredients} ref={containerRef} />
-    </div>
+    <>
+      {
+        ingredients &&
+        <div className={`${styles.col} ${burgerStyles.maxWidth}`}  >
+          <TabMenu currentTab={currentTab} />
+          <Menu items={ingredients} _ref={containerRef} />
+        </div>
+      }
+    </>
   );
 }
 

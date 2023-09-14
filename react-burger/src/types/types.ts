@@ -10,7 +10,8 @@ export type TIngredient = {
     readonly proteins: number,
     readonly type: string,
     readonly _id: string,
-    readonly id?: string,
+    readonly id: string,
+    readonly unique?: string;
 }
 
 export type TUserInfo = {
@@ -18,4 +19,8 @@ export type TUserInfo = {
         email: string,
         name: string
     }
+}
+
+export type OrderedData = {
+    [name: string]: Array<TIngredient>
 }

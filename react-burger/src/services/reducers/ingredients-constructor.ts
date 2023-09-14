@@ -17,11 +17,12 @@ export const ingredientsConstructorReducer = (state = ingredientsDefault, action
         case ADD_INGREDIENT:
             return { ...state, ingredients: [...state.ingredients, action.payload] }
         case DELETE_INGREDIENT:
-            return { ...state, ingredients: [...state.ingredients.filter((ingredient) => ingredient?.id !== action.payload)] }
+            return { ...state, ingredients: [...state.ingredients.filter((ingredient) => ingredient.id !== action.payload)] }
         case DELETE_ALL:
             return { ...state, ingredients: [], bun: null }
         case MOVE:
             {
+                console.log(2938564)
                 const newState = [...state.ingredients];
                 const index1 = state.ingredients.findIndex(item => item.id === String(action.payload.dragId))
                 const index2 = state.ingredients.findIndex(item => item.id === String(action.payload.targetId))

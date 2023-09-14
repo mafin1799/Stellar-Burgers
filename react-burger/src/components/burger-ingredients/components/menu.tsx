@@ -1,31 +1,26 @@
-import PropTypes from 'prop-types';
+import React, { FC } from "react";
 import styles from "../../../assets/burger-ingredients/menu.module.css";
-import React from "react";
 import { groupDataByType } from "../../../utils/groupDataByType";
 import { MenuGroup } from "./menu-group";
-import { propDefinition } from "../../../utils/propDefenitions";
+import { OrderedData, TIngredient } from "../../../types/types";
 
-
-export const Menu =  React.forwardRef(({ items}, ref) => {
+export const Menu: FC<{ items: Array<TIngredient>, _ref: HTMLDivElement }> = (({ items, _ref }) => {
     const groupedItemd = groupDataByType(items)
     const desiredOrder = ['bun', 'sauce', 'main'];
-    const reorderedItems = {};
+    const reorderedItems: OrderedData = {};
 
     desiredOrder.forEach((type) => {
         reorderedItems[type] = groupedItemd[type]
     })
-  
+
     return (
-        <div className={` ${styles.menu} pt-10 custom-scroll`}  ref={ref}>
+        <div className={` ${styles.menu} pt-10 custom-scroll`} ref={_ref}>
             {Object.entries(reorderedItems).map(([type, group]) => {
                 return (
-                    <MenuGroup key={type} id={type} type={type} data={group}/>
+                    <MenuGroup key={type} type={type} data={group} />
                 )
             })}
         </div>
     )
 })
 
-Menu.propTypes = {
-    items: PropTypes.arrayOf(propDefinition).isRequired,
-}

@@ -1,8 +1,8 @@
 import { TIngredient } from "../../types/types";
-import { INGREDIENTS_REQUEST, INGREDIENTS_SUCCESS, INGREDIENTS_ERROR, TIngredientsData } from "../actions/ingredients-data";
+import { INGREDIENTS_REQUEST, INGREDIENTS_SUCCESS, INGREDIENTS_ERROR, TIngredientsDataActions } from "../actions/ingredients-data";
 
 type TInitIngredients = {
-    ingredients: ReadonlyArray<TIngredient> | null,
+    ingredients: Array<TIngredient> | null,
     ingredientsRequest: boolean,
     ingredientsError: boolean,
     ingredientsLoaded: boolean
@@ -14,7 +14,7 @@ const ingredientsDefault: TInitIngredients = {
     ingredientsLoaded: false
 }
 
-export const ingredientsReducer = (state = ingredientsDefault, action: TIngredientsData) => {
+export const ingredientsReducer = (state = ingredientsDefault, action: TIngredientsDataActions) => {
     switch (action.type) {
         case INGREDIENTS_REQUEST: {
             return { ...state, ingredientsRequest: true }

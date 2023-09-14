@@ -8,11 +8,12 @@ import { OrderDetails } from "./components/order-details";
 import { Modal } from '../modal/modal';
 import { useDrop } from "react-dnd";
 import { sentOrderRequest } from "../../services/actions/order";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../types/hooks";
 import { addBuns, addIngredient, deleteAll } from "../../services/actions/ingredients-constructor";
 import { DraggableElement } from "./components/constructor-element";
 import { checkToken } from "../../utils/check-access";
 import { useNavigate } from "react-router-dom";
+import { TIngredient } from "../../types/types";
 
 
 
@@ -28,7 +29,7 @@ export const BurgerConstructor = () => {
 
 
     const openModal = () => {
-        if (!window.getSelection().toString()) {
+        if (!window.getSelection()?.toString()) {
             setModalVisible(true)
         }
     }
@@ -65,7 +66,7 @@ export const BurgerConstructor = () => {
 
     const [, dropTarget] = useDrop({
         accept: 'ingredients',
-        drop(item) {
+        drop(item: any) {
             if (item.type === 'bun') {
                 dispatch(addBuns(item));
             } else if (_bun) {
@@ -97,7 +98,7 @@ export const BurgerConstructor = () => {
                     <div className={`pt-4 ${styles.row}`}>
                         <div className={`text_type_digits-medium ${burgerStyles.ml35}`}>
                             <span >
-                                {totalCount} <CurrencyIcon />
+                                {totalCount} <CurrencyIcon type="primary"/>
                             </span>
                         </div>
                         <div className={burgerStyles.mlAuto}>

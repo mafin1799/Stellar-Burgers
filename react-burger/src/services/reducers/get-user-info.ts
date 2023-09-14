@@ -7,7 +7,7 @@ type TInitGetUsetInfo = {
     userError: boolean,
     user: TUserInfo | null
 }
-const initGetUserInfo = {
+const initGetUserInfo: TInitGetUsetInfo = {
     userRequest: false,
     userSuccess: false,
     userError: false,

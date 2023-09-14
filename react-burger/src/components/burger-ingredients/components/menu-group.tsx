@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import styles from "../../../assets/burger-ingredients/menu-group.module.css";
 import { getTypeAlias } from "../../../utils/groupTypeAlias";
 import { MenuCard } from "./menu-card";
-import { propDefinition } from "../../../utils/propDefenitions";
+import { FC } from 'react';
+import { TIngredient } from '../../../types/types';
 
-export const MenuGroup = ({ type, data }) => { 
+export const MenuGroup:FC<{type: string, data: ReadonlyArray<TIngredient>}> = ({ type, data }) => { 
 
     return (
         <div id={type} className="pt-10 pr-5">
@@ -18,7 +18,3 @@ export const MenuGroup = ({ type, data }) => {
     );
 };
 
-MenuGroup.propTypes = {
-    type: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(propDefinition).isRequired
-}

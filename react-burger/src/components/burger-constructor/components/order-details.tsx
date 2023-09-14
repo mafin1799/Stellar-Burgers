@@ -1,7 +1,9 @@
 import modalStyles from '../../../assets/order-details.module.css';
 import Done from "../../../images/done.png";
-import { useSelector } from 'react-redux';
-export const OrderDetails = () => {
+import { useSelector } from '../../../types/hooks';
+import { FC } from 'react'
+
+export const OrderDetails: FC = () => {
     const orderNumber = useSelector(store => store.orderInfo.orderNumber)
     return (
         <>

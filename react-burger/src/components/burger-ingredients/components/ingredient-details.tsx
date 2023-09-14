@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
 import styles from '../../../assets/styles.module.css';
-import { propDefinition } from "../../../utils/propDefenitions";
-import PropTypes from 'prop-types';
-export const IngredientDetails = ({ data }) => {
+import { FC } from 'react';
+import { TIngredient } from '../../../types/types';
+
+export const IngredientDetails: FC<{ data: Array<TIngredient> }> = ({ data }) => {
 
     const { id } = useParams();
     const info = data.find(elem => elem._id === id)
     return (
-        <>
+        <> {info &&
             <div className={styles.container}>
                 <img src={info.image_large} alt="" />
                 <div className="pt-4 text_type_main-medium">
@@ -40,10 +41,7 @@ export const IngredientDetails = ({ data }) => {
                     </div>
                 </div>
             </div>
+        }
         </>
     )
-}
-
-IngredientDetails.propTypes = {
-    data: PropTypes.arrayOf(propDefinition).isRequired
 }

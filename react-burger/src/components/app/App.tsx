@@ -1,7 +1,7 @@
 import AppHeader from '../app-header/app-header';
 import { MainPage } from '../../pages/main-page';
 import { Page404 } from '../../pages/page-404';
-import { Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react'
 import { LoginPage } from '../../pages/login-page';
 import { RegistrationPage } from '../../pages/registration-page';
@@ -12,7 +12,7 @@ import { ProtectedRoute } from '../protected-route/protected-route';
 import { UserInfo } from '../user-info/user-info';
 import { Orders } from '../orders/orders';
 import { IngredientPage } from '../../pages/ingredient';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../types/hooks';
 import { Modal } from '../modal/modal';
 import { IngredientDetails } from '../burger-ingredients/components/ingredient-details';
 import { sentIngredientsRequest } from '../../services/actions/ingredients-data';

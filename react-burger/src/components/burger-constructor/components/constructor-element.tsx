@@ -5,12 +5,13 @@ import { useDispatch } from "react-redux";
 import { deleteIngredient } from "../../../services/actions/ingredients-constructor";
 import { useDrag, useDrop } from "react-dnd";
 import { move } from "../../../services/actions/ingredients-constructor";
-import { propDefinition } from "../../../utils/propDefenitions";
+import { TIngredient } from "../../../types/types";
+import { FC } from "react";
 
-export const DraggableElement = ({ data }) => {
+export const DraggableElement: FC<{ data: TIngredient}> = ({ data }) => {
     const dispatch = useDispatch();
     const { id } = data;
-    const ref = useRef(null)
+    const ref = useRef<HTMLDivElement>(null)
 
     const [{ isDrag }, dragRef] = useDrag({
         type: 'ingredient',
@@ -22,11 +23,11 @@ export const DraggableElement = ({ data }) => {
 
     const [, dropTargetInside] = useDrop({
         accept: 'ingredient',
-        hover(item) {
+        hover(item: any) {
             if (!ref.current) {
                 return
             }
-
+            console.log(item)
             const dragId = item.id;
             const targetId = id;
 
@@ -46,16 +47,13 @@ export const DraggableElement = ({ data }) => {
             ref={ref}
             className={`${styles.snapStart} ${styles.dFlex} ${styles.verticalCenter} pb-4`}>
 
-            <span className="pr-2"><DragIcon /></span>
+            <span className="pr-2"><DragIcon type="primary"/></span>
 
             <ConstructorElement
                 thumbnail={data.image}
                 price={data.price}
                 text={data.name}
-                handleClose={() => dispatch(deleteIngredient(data.id))} />
+                handleClose={() => dispatch(deleteIngredient(id))} />
         </div>
     )
-}
-DraggableElement.propTypes = {
-    data: propDefinition.isRequired
 }

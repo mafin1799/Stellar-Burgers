@@ -1,7 +1,8 @@
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import { propDefinition } from "../../../utils/propDefenitions";
+import { FC } from "react";
+import { TIngredient } from "../../../types/types";
 
-export const TopDown = ({ prop, children }) => {
+export const TopDown: FC<{prop: TIngredient, children: JSX.Element}> = ({ prop, children }) => {
     return (
         <>
             <ConstructorElement type={"top"} text={prop.name + " (верх)"} price={prop.price} thumbnail={prop.image} isLocked={true} extraClass={`mb-4 ml-8`} />
@@ -10,8 +11,4 @@ export const TopDown = ({ prop, children }) => {
 
         </>
     )
-}
-
-TopDown.propTypes = {
-    prop: propDefinition.isRequired,
 }
