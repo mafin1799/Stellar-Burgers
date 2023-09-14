@@ -17,6 +17,8 @@ import { Modal } from '../modal/modal';
 import { IngredientDetails } from '../burger-ingredients/components/ingredient-details';
 import { sentIngredientsRequest } from '../../services/actions/ingredients-data';
 import { deleteIngredientDetails } from "../../services/actions/ingredient-details";
+
+
 export const App = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector(store => store.getUserInfo.user)
