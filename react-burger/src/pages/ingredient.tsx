@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "../types/hooks";
 import { IngredientDetails } from "../components/burger-ingredients/components/ingredient-details";
 
 export const IngredientPage = () => {

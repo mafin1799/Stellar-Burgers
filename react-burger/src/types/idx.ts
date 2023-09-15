@@ -17,7 +17,7 @@ import { TSetUserInfoActions } from "../services/actions/set-user-info";
 
 
 type TActions =
-    | TAuthActions
+    
     | TForgotActions
     | TIngredientDetailsActions
     | TIngredientConstructorActions
@@ -27,7 +27,8 @@ type TActions =
     | TRefreshActions
     | TRegActions
     | TPasswordResetActions
-    | TSetUserInfoActions;
+    | TSetUserInfoActions
+    | TAuthActions;
 
 
 export type TRootReducer = ReturnType<typeof rootReducer>;

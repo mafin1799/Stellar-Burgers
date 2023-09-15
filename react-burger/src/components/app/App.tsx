@@ -40,10 +40,10 @@ export const App = () => {
       {!ingredients && userInfo ? <p>Загрузка</p>
         : <Routes location={background || location}>
           <Route path='/' element={<MainPage />} />
-          <Route path='/login' element={<ProtectedRoute guest><LoginPage /> </ProtectedRoute>} />
-          <Route path='/register' element={<ProtectedRoute guest><RegistrationPage /></ProtectedRoute>} />
-          <Route path='/forgot-password' element={<ProtectedRoute guest><ForgotPasswordPage /> </ProtectedRoute>} />
-          <Route path='/reset-password' element={<ProtectedRoute guest><ResetPasswordPage /></ProtectedRoute>} />
+          <Route path='/login' element={<ProtectedRoute guest><div><LoginPage /></div></ProtectedRoute>} />
+          <Route path='/register' element={<ProtectedRoute guest><div><RegistrationPage /></div></ProtectedRoute>} />
+          <Route path='/forgot-password' element={<ProtectedRoute guest><div><ForgotPasswordPage /></div></ProtectedRoute>} />
+          <Route path='/reset-password' element={<ProtectedRoute guest><div><ResetPasswordPage /></div></ProtectedRoute>} />
           <Route path='/ingredients/:id' element={<IngredientPage />} />
           <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} >
             <Route path='' element={<UserInfo />} />
@@ -55,7 +55,7 @@ export const App = () => {
 
       {ingredients && background &&
         <Routes>
-          <Route path="/ingredients/:id" element={<Modal onClose={close} title={'Детали ингредиента'}> <IngredientDetails data={ingredients} /></Modal>} />
+          <Route path="/ingredients/:id" element={<Modal onClose={close} title={'Детали ингредиента'}><IngredientDetails data={ingredients} /> </Modal>} />
         </Routes>
       }
     </>

@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react'
-
 import { Input, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../types/hooks";
 import { sentGetUserInfo } from '../../services/actions/get-user-info';
 import { checkToken } from '../../utils/check-access';
 import { sentRefreshRequest } from '../../services/actions/refresh';
-import { setUserInfo } from '../../utils/burger-api';
 import { sentSetUserInfo } from '../../services/actions/set-user-info';
 
 export const UserInfo = () => {
-    
+
 
     const [editEmail, setEditEmail] = useState(true)
     const [editName, setEditName] = useState(true)
@@ -19,7 +16,7 @@ export const UserInfo = () => {
 
     const userInfo = useSelector(store => store.getUserInfo.user)
     const userInfoSuccess = useSelector(store => store.getUserInfo.userSuccess)
-   
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -29,16 +26,16 @@ export const UserInfo = () => {
 
     useEffect(() => {
         if (checkToken()) {
-          
+
             dispatch(sentGetUserInfo())
         } else {
-          
+
             dispatch(sentRefreshRequest())
         }
-        if(refresh){
+        if (refresh) {
             dispatch(sentGetUserInfo())
         }
-        if(userInfoSuccess){
+        if (userInfoSuccess && userInfo) {
             setEmail(userInfo.email)
             setName(userInfo.name)
         }
@@ -46,14 +43,17 @@ export const UserInfo = () => {
     }, [refresh, userInfoSuccess])
 
     const submitUserInfo = () => {
-      
-       dispatch(sentSetUserInfo(email, name, password))
+
+        dispatch(sentSetUserInfo(email, name, password))
     }
 
     const reset = () => {
-        setEmail(userInfo.email)
-        setName(userInfo.name)
-        setPassword('')
+        if (userInfo) {
+            setEmail(userInfo.email)
+            setName(userInfo.name)
+            setPassword('')
+        }
+
     }
     return (
 
@@ -74,13 +74,12 @@ export const UserInfo = () => {
                         placeholder={'E-mail'}
                         onIconClick={() => setEditEmail(!editEmail)}
                         extraClass="pt-6"
-                        icon={ 'EditIcon'}
+                        icon={'EditIcon'}
                         onChange={e => setEmail(e.target.value)} />
 
                     <PasswordInput
-                        type={'password'}
                         value={password}
-                      
+
                         extraClass="pt-6"
                         onChange={e => setPassword(e.target.value)} />
 

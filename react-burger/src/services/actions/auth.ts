@@ -7,10 +7,10 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
 
 type TAuthSuccess = {
-    user: {
-        email: string,
-        name: string
-    }
+
+    email: string,
+    name: string
+
 };
 
 export interface IAuthRequest { readonly type: typeof AUTH_REQUEST; };

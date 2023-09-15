@@ -8,7 +8,7 @@ export const IngredientDetails: FC<{ data: Array<TIngredient> }> = ({ data }) =>
     const { id } = useParams();
     const info = data.find(elem => elem._id === id)
     return (
-        <> {info &&
+        <div> {info &&
             <div className={styles.container}>
                 <img src={info.image_large} alt="" />
                 <div className="pt-4 text_type_main-medium">
@@ -42,6 +42,6 @@ export const IngredientDetails: FC<{ data: Array<TIngredient> }> = ({ data }) =>
                 </div>
             </div>
         }
-        </>
+        </div>
     )
 }

@@ -15,10 +15,10 @@ export type TIngredient = {
 }
 
 export type TUserInfo = {
-    user: {
-        email: string,
-        name: string
-    }
+
+    email: string,
+    name: string
+
 }
 
 export type OrderedData = {

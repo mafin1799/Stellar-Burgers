@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import styles from '../assets/styles.module.css'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../types/hooks";
 import { sentPasswordResetResetRequest } from "../services/actions/reset-password";
 export const ResetPasswordPage = () => {
     const dispatch = useDispatch();

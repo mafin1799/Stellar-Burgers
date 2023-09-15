@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom"
 import { sentLogoutRequest } from "../services/actions/logout";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../types/hooks";
 export const ProfilePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()

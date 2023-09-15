@@ -3,7 +3,7 @@ import { BurgerConstructor } from '../components/burger-constructor/burger-const
 import styles from "../assets/styles.module.css"
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { useSelector } from "react-redux";
+import { useSelector } from "../types/hooks";
 
 export const MainPage = () => {
    

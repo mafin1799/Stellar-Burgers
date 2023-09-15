@@ -1,11 +1,15 @@
 import { Navigate, useLocation } from "react-router-dom"
-import { ACCESS_TOKEN_ALIAS } from "../../utils/const"
-import { getCookie } from "../../utils/cookies"
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "../../types/hooks";
+import React, { FC, useEffect } from "react";
 import { sentGetUserInfo } from "../../services/actions/get-user-info";
-export const ProtectedRoute = ({ guest = false, children }) => {
+
+type ProtectedRouteProps = {
+    guest?: boolean;
+    children: JSX.Element;
+  };
+
+
+export const ProtectedRoute: FC<ProtectedRouteProps> = ({  children, guest = false }) => {
      /**
      * Проверим свежесть токена, отправив запрос за пользовательскими данными
      */
@@ -29,8 +33,3 @@ export const ProtectedRoute = ({ guest = false, children }) => {
     return children;
 }
 
-
-ProtectedRoute.propTypes = {
-    guest: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired
-}

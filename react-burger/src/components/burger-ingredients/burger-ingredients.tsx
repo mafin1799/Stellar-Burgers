@@ -30,15 +30,19 @@ export const BurgerIngredients = () => {
     }
     setCurrentTab(tabOrder[closestIdx]);
   }
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-
     if (containerRef.current) {
       containerRef.current.addEventListener('scroll', handleScroll);
     }
-    return () => containerRef.current && containerRef.current.removeEventListener('scroll', handleScroll);
-  }, [])
+    
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
 
   return (
     <>

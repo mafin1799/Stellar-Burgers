@@ -2,7 +2,7 @@ import { Input, Button, PasswordInput } from "@ya.praktikum/react-developer-burg
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 import styles from '../assets/styles.module.css'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../types/hooks";
 import { sentAuthRequest } from "../services/actions/auth";
 
 export const LoginPage = () => {
@@ -21,7 +21,7 @@ export const LoginPage = () => {
             <div className="text_type_main-medium">Вход</div>
 
             <Input type={'email'} placeholder={'E-mail'} extraClass="pt-6" error={error} value={email} errorText={'Ошибка'} onChange={e => setEmail(e.target.value)} />
-            <PasswordInput extraClass="pt-6" error={error} errorText={'Ошибка'} value={password} onChange={e => setPassword(e.target.value)} />
+            <PasswordInput extraClass="pt-6"  value={password} onChange={e => setPassword(e.target.value)} />
             <Button htmlType="button" type="primary" onClick={loginHandler} size="large" extraClass="mt-6">Войти</Button>
 
             <span className="mt-20 text_color_inactive text_type_main-default">

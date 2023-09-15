@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import styles from '../assets/styles.module.css'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../types/hooks";
 import { sentRegister } from "../services/actions/register";
 export const RegistrationPage = () => {
     const navigate = useNavigate();

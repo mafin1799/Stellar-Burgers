@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, Ref, RefObject } from "react";
 import styles from "../../../assets/burger-ingredients/menu.module.css";
 import { groupDataByType } from "../../../utils/groupDataByType";
 import { MenuGroup } from "./menu-group";
 import { OrderedData, TIngredient } from "../../../types/types";
 
-export const Menu: FC<{ items: Array<TIngredient>, _ref: HTMLDivElement }> = (({ items, _ref }) => {
+export const Menu: FC<{ items: Array<TIngredient>, _ref: RefObject<HTMLDivElement> }> = (({ items, _ref }) => {
     const groupedItemd = groupDataByType(items)
     const desiredOrder = ['bun', 'sauce', 'main'];
     const reorderedItems: OrderedData = {};

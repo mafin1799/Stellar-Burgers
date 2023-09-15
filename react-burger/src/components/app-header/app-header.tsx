@@ -2,8 +2,9 @@ import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import { BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 import { NavLink } from "react-router-dom";
 import style from "../../assets/header/app-header.module.css"
+import { FC } from "react";
 
-const NavMenu = ({ children }) => {
+const NavMenu: FC<{children: React.ReactNode}> = ({ children }) => {
     return (
         <div className={`${style.navMenu} p-0 ${style.container}`}>
             {children}
@@ -11,7 +12,7 @@ const NavMenu = ({ children }) => {
     )
 }
 
-const Navigate = ({ children }) => {
+const Navigate: FC<{children: React.ReactNode}> = ({ children }) => {
     return (
         <div className="col d-flex align-items-center justify-content-start">
             <div className="row p-0 m-0">
