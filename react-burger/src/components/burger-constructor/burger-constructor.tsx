@@ -66,7 +66,8 @@ export const BurgerConstructor = () => {
 
     const [, dropTarget] = useDrop({
         accept: 'ingredients',
-        drop(item: any) {
+        drop(item: TIngredient) {
+           
             if (item.type === 'bun') {
                 dispatch(addBuns(item));
             } else if (_bun) {

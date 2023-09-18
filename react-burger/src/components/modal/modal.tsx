@@ -7,7 +7,7 @@ import { ModalOverlay } from "./modal-overlay";
 export const Modal: FC<{ title?: string; onClose: () => void; children: React.ReactNode; }> = ({ title, onClose, children }) => {
   const modalRoot = document.getElementById("react-modals");
 
-  const handleKeyPress = (e: any) => {
+  const handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
     }

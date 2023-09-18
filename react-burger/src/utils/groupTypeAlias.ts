@@ -1,4 +1,4 @@
-const typeAliasesConfig: any = {
+const typeAliasesConfig: { [name: string]: string } = {
     bun: 'Булки',
     main: 'Начинки',
     sauce: 'Соусы',

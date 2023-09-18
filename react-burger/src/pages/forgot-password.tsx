@@ -19,9 +19,9 @@ export const ForgotPasswordPage = () => {
             dispatch(sentPasswordResetRequest(email));
         }
     }
-
-    const handleEmailChange = (e: any) => {
-        setEmail(e.target.value)
+    const handleEmailChange = (e: React.FormEvent<EventTarget>) => { 
+        const target = e.target as HTMLInputElement;
+        setEmail(target.value) 
     }
     useEffect(() => {
         if (succesSend) {

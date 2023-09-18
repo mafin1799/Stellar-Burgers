@@ -23,11 +23,10 @@ export const DraggableElement: FC<{ data: TIngredient}> = ({ data }) => {
 
     const [, dropTargetInside] = useDrop({
         accept: 'ingredient',
-        hover(item: any) {
+        hover(item: {id: string}) {
             if (!ref.current) {
                 return
             }
-            console.log(item)
             const dragId = item.id;
             const targetId = id;
 

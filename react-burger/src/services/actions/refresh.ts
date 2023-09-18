@@ -1,7 +1,8 @@
-import { getRefresh } from "../../utils/burger-api";
+import { TRefresh, getRefresh } from "../../utils/burger-api";
 import { setCookie } from "../../utils/cookies";
-import { REFRESH_TOKEN_ALIAS } from "../../utils/const";
+import { EXPIRES_TIME, REFRESH_TOKEN_ALIAS } from "../../utils/const";
 import { TDispatch } from "../../types/idx";
+import { TUserInfo } from "../../types/types";
 
 
 export const REFRESH_REQUEST = 'REFRESH_REQUEST';
@@ -14,13 +15,13 @@ type TToken = {
 }
 
 export interface IRefreshRequest { readonly type: typeof REFRESH_REQUEST };
-export interface IRefreshSuccess { readonly type: typeof REFRESH_SUCCESS, payload: TToken };
+export interface IRefreshSuccess { readonly type: typeof REFRESH_SUCCESS, payload: TUserInfo };
 export interface IRefreshError { readonly type: typeof REFRESH_ERROR };
 
 export type TRefreshActions = IRefreshRequest | IRefreshSuccess | IRefreshError;
 
 export const getRefreshRequest = (): IRefreshRequest => ({ type: REFRESH_REQUEST });
-export const getRefreshSuccess = (payload: TToken): IRefreshSuccess => ({ type: REFRESH_SUCCESS, payload });
+export const getRefreshSuccess = (payload: TUserInfo): IRefreshSuccess => ({ type: REFRESH_SUCCESS, payload });
 export const getRefreshError = (): IRefreshError => ({ type: REFRESH_ERROR });
 
 export const sentRefreshRequest = () => (dispatch: TDispatch) => {
@@ -28,7 +29,7 @@ export const sentRefreshRequest = () => (dispatch: TDispatch) => {
     getRefresh(localStorage.getItem(REFRESH_TOKEN_ALIAS))
         .then(response => {
             if (response && response.success) {
-                setCookie('accessToken', response.accessToken, { expires: 1200 });
+                setCookie('accessToken', response.accessToken, { expires: EXPIRES_TIME });
                 localStorage.setItem('refreshToken', response.refreshToken);
                 dispatch(getRefreshSuccess(response.user));
             }
