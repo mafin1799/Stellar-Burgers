@@ -19,6 +19,7 @@ const getLogoutError = () => ({ type: LOGOUT_ERROR });
 
 export const sentLogoutRequest = (goToLogin: () => void) => (dispatch: TDispatch) => {
     dispatch(getLogoutRequest());
+    const refresh = localStorage.getItem(REFRESH_TOKEN_ALIAS);
     getLogout(localStorage.getItem(REFRESH_TOKEN_ALIAS))
         .then(response => {
             if (response && response.success) {

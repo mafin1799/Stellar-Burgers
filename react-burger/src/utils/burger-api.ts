@@ -1,14 +1,13 @@
 import { ACCESS_TOKEN_ALIAS, STELLAR_BERGER_API } from "./const"
 import { checkResponse, fetchWithRefresh } from "./checkResponse"
 import { getCookie } from "./cookies"
-import { checkToken } from "./check-access"
 
 export const getIngregientsData = () => {
   return fetch(`${STELLAR_BERGER_API}/ingredients`)
     .then(checkResponse)
 }
 
-export const getOrderData = (ingredientsId) => {
+export const getOrderData = (ingredientsId: ReadonlyArray<string>) => {
   return fetch(`${STELLAR_BERGER_API}/orders`, {
     method: 'POST',
     headers: {
@@ -20,7 +19,7 @@ export const getOrderData = (ingredientsId) => {
     .then(checkResponse)
 }
 
-export const getPasswordReset = (email) => {
+export const getPasswordReset = (email: string) => {
   return fetch(`${STELLAR_BERGER_API}/password-reset`, {
     method: 'POST',
     headers: {
@@ -32,7 +31,7 @@ export const getPasswordReset = (email) => {
     .then(checkResponse)
 }
 
-export const getPasswordResetReset = (password, token) => {
+export const getPasswordResetReset = (password: string, token: string) => {
   return fetch(`${STELLAR_BERGER_API}/password-reset/reset`, {
     method: 'POST',
     headers: {
@@ -44,7 +43,7 @@ export const getPasswordResetReset = (password, token) => {
     .then(checkResponse)
 }
 
-export const getAuth = (email, password) => {
+export const getAuth = (email: string, password: string) => {
   return fetch(`${STELLAR_BERGER_API}/auth/login `, {
     method: 'POST',
     headers: {
@@ -55,7 +54,7 @@ export const getAuth = (email, password) => {
   })
     .then(checkResponse)
 }
-export const getRegister = (name, email, password) => {
+export const getRegister = (name: string, email: string, password: string) => {
   return fetch(`${STELLAR_BERGER_API}/auth/register`, {
     method: 'POST',
     headers: {
@@ -67,7 +66,7 @@ export const getRegister = (name, email, password) => {
     .then(checkResponse)
 }
 
-export const getLogout = (refreshToken) => {
+export const getLogout = (refreshToken: string | null) => {
   return fetch(`${STELLAR_BERGER_API}/auth/logout`, {
     method: 'POST',
     headers: {
@@ -79,7 +78,7 @@ export const getLogout = (refreshToken) => {
     .then(checkResponse)
 }
 
-export const getRefresh = (refreshToken) => {
+export const getRefresh = (refreshToken: string | null) => {
   return fetch(`${STELLAR_BERGER_API}/auth/token`, {
     method: 'POST',
     headers: {
@@ -92,32 +91,28 @@ export const getRefresh = (refreshToken) => {
 }
 
 export const getUserInfo = () => {
-    return fetch(`${STELLAR_BERGER_API}/auth/user`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'authorization': getCookie(ACCESS_TOKEN_ALIAS)
-      }
-    })
-      .then(checkResponse)
-}
-
-/*export const setUserInfo = (name, email, password) => {
-  return fetch(`${STELLAR_BERGER_API}/auth/user`, {
-    method: 'PATCH',
-    body: JSON.stringify({name:name, email:email, password:password}),
-    headers: {
+  const headers: HeadersInit = {
       'Content-Type': 'application/json;charset=utf-8',
-      'authorization': getCookie(ACCESS_TOKEN_ALIAS)
-    }
-  })
-    .then(checkResponse)
-}*/
+  };
 
-export const setUserInfo = (name, email, password) => {
+  const accessToken = getCookie(ACCESS_TOKEN_ALIAS);
+
+  if (accessToken) {
+      headers['authorization'] = accessToken;
+  }
+
+  return fetch(`${STELLAR_BERGER_API}/auth/user`, {
+      method: 'GET',
+      headers,
+  })
+  .then(checkResponse);
+};
+
+
+export const setUserInfo = (name: string, email: string, password: string) => {
   let options = {
     method: 'PATCH',
-    body: JSON.stringify({name:name, email:email, password:password}),
+    body: JSON.stringify({ name: name, email: email, password: password }),
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       authorization: getCookie(ACCESS_TOKEN_ALIAS)
