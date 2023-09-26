@@ -11,6 +11,8 @@ import { logoutReducer } from "./logout";
 import { registerReducer } from "./register";
 import { getUserReducer } from "./get-user-info";
 import { setUserReducer } from "./set-user-info";
+import { WsReducer } from "./ws";
+import { wsAuthReducer } from "./ws-auth";
 
 export const rootReducer = combineReducers({
     orderInfo: orderReducer,
@@ -20,9 +22,12 @@ export const rootReducer = combineReducers({
     forgotPassword: forgotPasswordReducer,
     resetPassword: resetPasswordReducer,
     auth: authReducer,
+  
     refresh: refreshReducer,
     logout: logoutReducer,
     register: registerReducer,
     getUserInfo: getUserReducer,
-    setUserInfo: setUserReducer
+    setUserInfo: setUserReducer,
+    wsOrders: WsReducer,
+    currentOrder: wsAuthReducer
 })

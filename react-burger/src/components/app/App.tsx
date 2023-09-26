@@ -17,6 +17,7 @@ import { Modal } from '../modal/modal';
 import { IngredientDetails } from '../burger-ingredients/components/ingredient-details';
 import { sentIngredientsRequest } from '../../services/actions/ingredients-data';
 import { deleteIngredientDetails } from "../../services/actions/ingredient-details";
+import { FeedPage } from '../../pages/feed';
 
 
 export const App = () => {
@@ -45,10 +46,20 @@ export const App = () => {
           <Route path='/forgot-password' element={<ProtectedRoute guest><div><ForgotPasswordPage /></div></ProtectedRoute>} />
           <Route path='/reset-password' element={<ProtectedRoute guest><div><ResetPasswordPage /></div></ProtectedRoute>} />
           <Route path='/ingredients/:id' element={<IngredientPage />} />
+          {/** */}
+          <Route path="/feed" element={ <FeedPage path='/feed'/>} >
+            {/** 
+            <Route path=":id" element={ } />*/}
+          </Route>
+
           <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} >
             <Route path='' element={<UserInfo />} />
-            <Route path='orders' element={<Orders />} />
+            {/** 
+            <Route path='orders' element={<Orders />} />*/}
           </Route>
+          {/**
+          <Route path="/profile/orders/:id" element={<ProtectedRoute></ProtectedRoute>}
+          /> */}
           <Route path='*' element={<Page404 />} />
         </Routes>
       }

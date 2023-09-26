@@ -1,11 +1,11 @@
 import { LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_ERROR, TLogoutActions } from "../actions/logout";
 
 type TInitLogout = {
-    logoutRequest: false,
-    logoutSuccess: false,
-    logoutError: false,
+    logoutRequest: boolean,
+    logoutSuccess: boolean,
+    logoutError: boolean,
 }
-const initLogout = {
+const initLogout: TInitLogout = {
     logoutRequest: false,
     logoutSuccess: false,
     logoutError: false,

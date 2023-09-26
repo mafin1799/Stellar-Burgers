@@ -13,11 +13,11 @@ import { TRefreshActions } from "../services/actions/refresh";
 import { TRegActions } from "../services/actions/register";
 import { TPasswordResetActions } from "../services/actions/reset-password";
 import { TSetUserInfoActions } from "../services/actions/set-user-info";
-
+import { TWsAuthActions } from "../services/actions/ws-auth";
+import { TWsActions1 } from "../services/actions/ws";
 
 
 type TActions =
-    
     | TForgotActions
     | TIngredientDetailsActions
     | TIngredientConstructorActions
@@ -28,7 +28,9 @@ type TActions =
     | TRegActions
     | TPasswordResetActions
     | TSetUserInfoActions
-    | TAuthActions;
+    | TAuthActions
+    | TWsAuthActions
+    | TWsActions1;
 
 
 export type TRootReducer = ReturnType<typeof rootReducer>;

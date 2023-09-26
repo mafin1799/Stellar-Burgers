@@ -3,9 +3,9 @@ import { getLogout } from "../../utils/burger-api";
 import { ACCESS_TOKEN_ALIAS, REFRESH_TOKEN_ALIAS } from "../../utils/const";
 import { deleteCookie } from "../../utils/cookies";
 
-export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const LOGOUT_ERROR = 'LOGOUT_ERROR';
+export const LOGOUT_REQUEST: 'LOGOUT_REQUEST' = 'LOGOUT_REQUEST';
+export const LOGOUT_SUCCESS: 'LOGOUT_SUCCESS' = 'LOGOUT_SUCCESS';
+export const LOGOUT_ERROR: 'LOGOUT_ERROR' = 'LOGOUT_ERROR';
 
 export interface ILogoutRequest { readonly type: typeof LOGOUT_REQUEST };
 export interface ILogoutSuccess { readonly type: typeof LOGOUT_SUCCESS };

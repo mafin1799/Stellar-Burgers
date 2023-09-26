@@ -24,3 +24,14 @@ export type TUserInfo = {
 export type OrderedData = {
     [name: string]: Array<TIngredient>
 }
+
+export type TOrder = {
+    _id: string
+    createdAt: string,
+    ingredients: Array<string>,
+    name: string,
+    number: number,
+    status: string,
+    updatedAt: string,
+}
+
