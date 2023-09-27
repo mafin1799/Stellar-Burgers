@@ -1,0 +1,27 @@
+.page {
+    max-width: 1240px;
+    width: 100%;
+    margin: auto;
+    text-align: left;
+  }
+  
+  .block {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+  }
+  
+  .ordersTemplate {
+    max-width: 580px;
+    width: 100%;
+  }
+  
+  .ordersStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .statsData {
+    text-shadow: #3333ff80 0 0 20px;
+  }

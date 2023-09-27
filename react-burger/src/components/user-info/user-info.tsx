@@ -83,7 +83,7 @@ export const UserInfo = () => {
                         extraClass="pt-6"
                         onChange={e => setPassword(e.target.value)} />
 
-                    <div className='row pt-6 pb-15 d-flex justify-content-end'>
+                    <div className='row pt-6 pb-15 d-flex justify-content-end fit-content'>
                         <Button type="secondary" htmlType="reset" onClick={reset}>Отмена</Button>
                         <Button type="primary" htmlType="button" onClick={submitUserInfo}>Сохранить</Button>
                     </div>

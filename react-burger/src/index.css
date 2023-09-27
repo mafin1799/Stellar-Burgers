@@ -34,6 +34,10 @@ code {
   justify-content: flex-start !important;
 }
 
+.justify-content-between {
+  justify-content: space-between;
+}
+
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -59,14 +63,14 @@ code {
   max-width: 100vw;
 }
 
-.container-fluid{
+.container-fluid {
   margin-left: auto;
   margin-right: auto;
   width: auto;
   overflow: hidden;
 }
 
-.centerHV{
+.centerHV {
   display: flex;
   flex-direction: column;
   align-items: center !important;
@@ -74,6 +78,33 @@ code {
   height: 100vh;
 }
 
-.headerOffset{
+.headerOffset {
   height: 64px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.ingredients-preview-element {
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  background-position: center;
+  border: 2px solid #801AB2;
+  background-size: cover;
+}
+
+.fit-content{
+  width: fit-content;
+}
+
+html{
+  overflow: hidden;
 }

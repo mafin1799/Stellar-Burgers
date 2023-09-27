@@ -34,12 +34,9 @@ export const ProfilePage = () => {
                         </NavLink>
                     </div>
                 </div>
-                <div>
-                    <Outlet />
-                </div>
 
+                <Outlet />
 
-                <div className="col"></div>
             </div>
         </div>
     )

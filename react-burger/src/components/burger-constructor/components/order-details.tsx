@@ -8,7 +8,7 @@ export const OrderDetails: FC = () => {
     return (
         <>
             <div className={`pt-30 text_type_digits-large ${modalStyles.digitShadow}`}>
-                {orderNumber}
+                {orderNumber === null ? 'Загрузка' : orderNumber}
             </div>
             <div className="text_type_main-medium pt-8">
                 идентификатор заказа

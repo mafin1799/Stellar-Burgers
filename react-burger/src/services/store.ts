@@ -2,8 +2,8 @@ import { rootReducer } from "./reducers/rootReducer";
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { WS_CLOSED, WS_ERROR, WS_GET_ORDERS, WS_START, WS_SUCCESS } from "./actions/ws";
+import { WS_START_AUTH, WS_CLOSED_AUTH, WS_ERROR_AUTH, WS_GET_ORDERS_AUTH, WS_SUCCESS_AUTH } from "./actions/ws-auth";
 import { socketMiddleware } from "./socketMiddleware";
-import { configureStore } from "@reduxjs/toolkit";
 
 declare global {
     interface Window {
@@ -26,6 +26,14 @@ const wsActions = {
     orders: WS_GET_ORDERS
 }
 
-const enhancer = composeEnhancers(applyMiddleware(thunk, socketMiddleware(`${wsUrl}/orders/all`, wsActions, false)));
+const wsAuthActions = {
+    start: WS_START_AUTH,
+    open: WS_SUCCESS_AUTH,
+    close: WS_CLOSED_AUTH,
+    error: WS_ERROR_AUTH,
+    orders: WS_GET_ORDERS_AUTH
+}
+
+const enhancer = composeEnhancers(applyMiddleware(thunk, socketMiddleware(`${wsUrl}/orders/all`, wsActions, false), socketMiddleware(`${wsUrl}/orders`, wsAuthActions, true)));
 
 export const store = createStore(rootReducer, enhancer);

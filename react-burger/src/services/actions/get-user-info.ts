@@ -12,9 +12,9 @@ export interface IGetUserError { readonly type: typeof GET_USER_ERROR; };
 
 export type TGetUserInfoActions = IGetUserRequest | IGetUserSuccess | IGetUserError;
 
-export const getUserRequest = () => ({ type: GET_USER_REQUEST });
-export const getUserSuccess = (payload: TUserInfo) => ({ type: GET_USER_SUCCESS, payload });
-export const getUserError = () => ({ type: GET_USER_ERROR });
+export const getUserRequest = ():IGetUserRequest => ({ type: GET_USER_REQUEST });
+export const getUserSuccess = (payload: TUserInfo):IGetUserSuccess => ({ type: GET_USER_SUCCESS, payload });
+export const getUserError = ():IGetUserError => ({ type: GET_USER_ERROR });
 
 export const sentGetUserInfo = () => (dispatch: TDispatch) => {
     dispatch(getUserRequest());
