@@ -35,7 +35,7 @@ export const wsError = (payload: string): IWsError => ({ type: WS_ERROR, payload
 export const wsClosed = (): IWsClosed => ({ type: WS_CLOSED })
 export const wsGetOrders = (payload: { orders: Array<TOrder>, total: number, totalToday: number }): IWsGetOrders => ({ type: WS_GET_ORDERS, payload })
 
-export type TWsActions1 =
+export type TWsActions =
     | IWsStart
     | IWsSuccess
     | IWsError

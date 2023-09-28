@@ -3,7 +3,7 @@ import { getCookie } from "../utils/cookies";
 import { TRootReducer } from "../types/idx";
 import { ACCESS_TOKEN_ALIAS } from "../utils/const";
 
-type TWsActions = {
+type TWs = {
     start: string,
     open: string,
     close: string,
@@ -11,7 +11,7 @@ type TWsActions = {
     orders: string
 }
 
-export const socketMiddleware = (wsUrl: string, wsActions: TWsActions, auth: boolean): Middleware<{}, TRootReducer> => {
+export const socketMiddleware = (wsUrl: string, wsActions: TWs, auth: boolean): Middleware<{}, TRootReducer> => {
     return store => {
         let ws: WebSocket | null = null;
 
@@ -34,9 +34,9 @@ export const socketMiddleware = (wsUrl: string, wsActions: TWsActions, auth: boo
                 ws.onerror = (event: Event) => { dispatch({ type: error, payload: event }); };
                 ws.onmessage = (event: MessageEvent<any>) => {
                     const { data } = event;
-                    const parsedData = JSON.parse(data);
-                    const { success, ...restParsedData } = parsedData;
-                    dispatch({ type: orders, payload: restParsedData });
+                    const result = JSON.parse(data);
+                    const { success, ...otherData } = result;
+                    dispatch({ type: orders, payload: otherData });
                 };
                 ws.onclose = (event: CloseEvent) => { dispatch({ type: close, payload: event }); };
             }

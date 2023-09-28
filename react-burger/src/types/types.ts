@@ -35,3 +35,5 @@ export type TOrder = {
     updatedAt: string,
 }
 
+export type TIngredientData = { data: TIngredient }
+

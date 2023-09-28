@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { useSelector } from '../../types/hooks';
+import { FC } from 'react';
+import { useSelector } from '../../../../types/hooks';
 import styles from './order-ingredient.module.css';
 
 type TOrderIngredient = {

@@ -1,5 +1,5 @@
 import { WS_CLOSED, WS_ERROR, WS_GET_ORDERS, WS_SUCCESS } from "../actions/ws";
-import { TWsActions1 } from "../actions/ws";
+import { TWsActions } from "../actions/ws";
 import { TOrder } from "../../types/types";
 
 type TInitStateWs = {
@@ -18,7 +18,7 @@ const initStateWs: TInitStateWs = {
     totalToday: 0
 }
 
-export const WsReducer = (state = initStateWs, action: TWsActions1) => {
+export const WsReducer = (state = initStateWs, action: TWsActions) => {
     switch (action.type) {
         case WS_SUCCESS: return {
             ...state,

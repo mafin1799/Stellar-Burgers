@@ -1,3 +1,13 @@
+.listElement {
+    height: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.done {
+    color: #00CCCC;
+}
+
 .table {
     height: 206px;
     width: 272px;
@@ -12,14 +22,4 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 8px 0px;
-}
-
-.listElement {
-    height: 24px;
-    margin: 0;
-    padding: 0;
-}
-
-.done {
-    color: #00CCCC;
 }

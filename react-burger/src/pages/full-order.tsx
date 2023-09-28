@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch } from '../types/hooks';
-import OrderInfo from '../components/order-info/order-info';
+import { OrderInfo } from '../components/order-info/order-info';
 import { FC } from 'react';
 import { TOrder } from '../types/types';
 
-type TOrderFullScreen = {
+type TOrderFull = {
     start: string,
     close: string,
     data: ReadonlyArray<TOrder>
 }
 
-const OrderFullScreen: FC<TOrderFullScreen> = ({ start, close, data }) => {
+export const OrderFull: FC<TOrderFull> = ({ start, close, data }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -29,4 +29,3 @@ const OrderFullScreen: FC<TOrderFullScreen> = ({ start, close, data }) => {
     );
 }
 
-export default OrderFullScreen;

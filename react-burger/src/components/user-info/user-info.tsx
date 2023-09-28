@@ -57,7 +57,7 @@ export const UserInfo = () => {
     }
     return (
 
-        <div className="col pt-30">
+        <div className="col pt-30 pl-15">
             {userInfo &&
                 <>
                     <Input
@@ -65,7 +65,8 @@ export const UserInfo = () => {
                         placeholder={'Имя'}
                         value={name}
                         onIconClick={() => setEditName(!editName)}
-                        extraClass="pt-6" icon={'EditIcon'}
+                        extraClass="pt-6 " 
+                        icon={'EditIcon'}
                         onChange={e => setName(e.target.value)} />
 
                     <Input
@@ -73,17 +74,17 @@ export const UserInfo = () => {
                         value={email}
                         placeholder={'E-mail'}
                         onIconClick={() => setEditEmail(!editEmail)}
-                        extraClass="pt-6"
+                        extraClass="pt-6  "
                         icon={'EditIcon'}
                         onChange={e => setEmail(e.target.value)} />
 
                     <PasswordInput
                         value={password}
 
-                        extraClass="pt-6"
+                        extraClass="pt-6  "
                         onChange={e => setPassword(e.target.value)} />
 
-                    <div className='row pt-6 pb-15 d-flex justify-content-end fit-content'>
+                    <div className='row pt-6 pb-15 fit-content'>
                         <Button type="secondary" htmlType="reset" onClick={reset}>Отмена</Button>
                         <Button type="primary" htmlType="button" onClick={submitUserInfo}>Сохранить</Button>
                     </div>

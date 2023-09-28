@@ -11,7 +11,7 @@ export const ProfilePage = () => {
     return (
         <div className="container-fluid">
             <div className="row container ml-0">
-                <div className="col pt-30 pl-5 pr-15">
+                <div className="pt-30 pl-5 pr-15 profile-menu-width">
                     <div className="headerOffset">
                         <NavLink end to='/profile'>
                             {({ isActive }) => (

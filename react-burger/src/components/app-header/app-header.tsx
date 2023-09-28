@@ -23,7 +23,7 @@ const Navigate: FC<{children: React.ReactNode}> = ({ children }) => {
 
 }
 
-const AppHeader = () => {
+export const AppHeader = () => {
     return (
         <div className={style.containerFluid}>
             <NavMenu>
@@ -70,4 +70,3 @@ const AppHeader = () => {
         </div>
     )
 }
-export default AppHeader;

@@ -24,8 +24,8 @@ export const FeedPage: FC<{ path: string }> = ({ path }) => {
                     <div className={`${styles.ordersStatus}`}>
                         {ordersData
                             ? <>
-                                <InfoDesk done name={"Готов"} arr={ordersData} statusString={"done"} />
-                                <InfoDesk name={"В работе"} arr={ordersData} statusString={"pending"} />
+                                <InfoDesk done name={"Готов"} arr={ordersData} status={"done"} />
+                                <InfoDesk name={"В работе"} arr={ordersData} status={"pending"} />
                             </>
                             : null}
                     </div>

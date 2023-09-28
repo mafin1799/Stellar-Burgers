@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import styles from '../../../assets/styles.module.css';
 import { FC } from 'react';
-import { TIngredient } from '../../../types/types';
+import { TIngredientsArray } from './types';
 
-export const IngredientDetails: FC<{ data: Array<TIngredient> }> = ({ data }) => {
+export const IngredientDetails: FC<TIngredientsArray> = ({ data }) => {
 
     const { id } = useParams();
     const info = data.find(elem => elem._id === id)

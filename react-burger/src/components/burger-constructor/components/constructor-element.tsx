@@ -5,10 +5,9 @@ import { useDispatch } from "react-redux";
 import { deleteIngredient } from "../../../services/actions/ingredients-constructor";
 import { useDrag, useDrop } from "react-dnd";
 import { move } from "../../../services/actions/ingredients-constructor";
-import { TIngredient } from "../../../types/types";
 import { FC } from "react";
-
-export const DraggableElement: FC<{ data: TIngredient}> = ({ data }) => {
+import { TIngredientData } from "../../../types/types";
+export const DraggableElement: FC<TIngredientData> = ({ data }) => {
     const dispatch = useDispatch();
     const { id } = data;
     const ref = useRef<HTMLDivElement>(null)
