@@ -7,4 +7,3 @@ export type TImageCounter = {
 
 export type TIngredientsArray = { data: Array<TIngredient> }
 
-export type TIngredientData = { data: TIngredient }
