@@ -16,12 +16,12 @@ export const OrderCard: FC<TOrderCard> = ({ data, path }) => {
     const location = useLocation();
 
     const ingredientsInfo = useSelector((store) => store.ingredientsInfo.ingredients);
-    const uniqueIngredients = data.ingredients.filter((element, index) => {
+    const uniq = data.ingredients.filter((element, index) => {
         return data.ingredients.indexOf(element) === index;
     }).reverse();
 
     const hideIngredients = (arr: string[], id: string) => {
-        return arr.filter(item => item == id).length
+        return arr.filter(item => item === id).length
     };
 
     type TStatus = {
@@ -39,30 +39,32 @@ export const OrderCard: FC<TOrderCard> = ({ data, path }) => {
 
     useMemo(() => {
         if (ingredientsInfo!.length !== 0) {
-            //в данные на сервере могут попасть null, убираем все несоответствия
             const ingredients = data.ingredients.map((item) => ingredientsInfo!.find((data) => data._id === item)).filter(Boolean);
             const totalPrice = ingredients?.reduce((previous, current) => previous + current?.price!, 0);
             setState({ ...state, status: data.status, totalPrice: totalPrice })
         }
-    }, [data.status]);
+    }, [data.status, data.ingredients]);
 
     return (
         <Link to={`${path}/${data._id}`} state={{ background: location }} className={styles.orderCard}>
+
             <p className={`${styles.number} text text_type_digits-default`}>#{data.number}</p>
-            <p className={`${styles.date} text text_type_main-default text_color_inactive`}><FormattedDate date={new Date(data.createdAt)} /></p>
+            <p className={`${styles.date} text text_type_main-default text_color_inactive`}>
+                <FormattedDate date={new Date(data.createdAt)} />
+            </p>
             <h4 className={`${styles.name} text text_type_main-medium`}>{data.name}</h4>
 
             {state.status === 'created' &&
-                <p className={`${styles.status} ${styles.default} text text_type_main-default`}>Создан</p>
+                <p className={`text text_type_main-default`}>Создан</p>
             }
             {state.status === 'pending' &&
-                <p className={`${styles.status} ${styles.default} text text_type_main-default`}>Готовится</p>
+                <p className={`text text_type_main-default`}>Готовится</p>
             }
             {state.status === 'done' &&
-                <p className={`${styles.status} ${styles.complete} text text_type_main-default`}>Готов</p>
+                <p className={`${styles.done} text text_type_main-default`}>Готов</p>
             }
             <div className={`${styles.ingredients}`}>
-                {uniqueIngredients.slice(0, 6).map(item =>
+                {uniq.slice(0, 6).map(item =>
                     <OrderIngredient intersection id={item} key={item} counter={hideIngredients(data.ingredients, item)} />
                 )}
             </div>

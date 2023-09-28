@@ -11,8 +11,8 @@ export const InfoDesk: FC<TInfoDesk> = ({ name, arr, done, status }) => {
             <ul className={`${styles.tableList}`}>
                 {ordersReady.slice(0, 10).map(item =>
                     done
-                        ? <li className={`${styles.listElement} ${styles.done} text text_type_digits-default`} key={item.number}>{item.number}</li>
-                        : <li className={`${styles.listElement} text text_type_digits-default`} key={item.number}>{item.number}</li>
+                        ? <li className={` ${styles.done} text text_type_digits-default`} key={item.number}>{item.number}</li>
+                        : <li className={` text text_type_digits-default`} key={item.number}>{item.number}</li>
                 )}
             </ul>
         </div>

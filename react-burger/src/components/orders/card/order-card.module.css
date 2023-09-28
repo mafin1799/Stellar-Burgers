@@ -49,18 +49,8 @@
   text-overflow: ellipsis;
 }
 
-.status {
-  margin: 0;
-  grid-area: status;
-  justify-self: start;
-}
-
-.complete {
+.done {
   color: #00CCCC;
-}
-
-.default {
-  color: #F2F2F3;
 }
 
 .total {

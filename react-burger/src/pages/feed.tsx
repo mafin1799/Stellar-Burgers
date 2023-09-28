@@ -20,8 +20,8 @@ export const FeedPage: FC<{ path: string }> = ({ path }) => {
             <h2 className={`${styles.block} text text_type_main-large mt-10 mb-5`}>Лента заказов</h2>
             <div className={`${styles.block}`}>
                 <Orders ordersData={wsData.orders!} path={path} />
-                <div className={`${styles.ordersTemplate}`}>
-                    <div className={`${styles.ordersStatus}`}>
+                <div className={`${styles.Template}`}>
+                    <div className={`${styles.Status}`}>
                         {ordersData
                             ? <>
                                 <InfoDesk done name={"Готов"} arr={ordersData} status={"done"} />
@@ -29,10 +29,10 @@ export const FeedPage: FC<{ path: string }> = ({ path }) => {
                             </>
                             : null}
                     </div>
-                    <h3 className={`${styles.statsHeader} text text_type_main-medium mt-15`}>Выполненно за все время:</h3>
-                    <p className={`${styles.statsData} text text_type_digits-large`}>{wsData.total}</p>
-                    <h3 className={`${styles.statsHeader} text text_type_main-medium mt-15`}>Выполненно за сегодня:</h3>
-                    <p className={`${styles.statsData} text text_type_digits-large`}>{wsData.totalToday}</p>
+                    <h3 className={`${styles.textShadow} text text_type_main-medium mt-15`}>Выполненно за все время:</h3>
+                    <p className={`${styles.textShadow} text text_type_digits-large`}>{wsData.total}</p>
+                    <h3 className={`${styles.textShadow} text text_type_main-medium mt-15`}>Выполненно за сегодня:</h3>
+                    <p className={`${styles.textShadow} text text_type_digits-large`}>{wsData.totalToday}</p>
                 </div>
             </div>
         </div>
