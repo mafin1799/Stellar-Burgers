@@ -15,8 +15,6 @@ type TOrderInfo = {
 export const OrderInfo: FC<TOrderInfo> = ({ modal, data }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  console.log(data)
   const current = data!.find(item => item._id === id);
   const ingredientsInfo = useSelector((store) => store.ingredientsInfo.ingredients);
   const orderingredients = current?.ingredients.map(item => ingredientsInfo!.find(data => data._id === item));
