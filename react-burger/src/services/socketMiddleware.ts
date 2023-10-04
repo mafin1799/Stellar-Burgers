@@ -20,7 +20,6 @@ export const socketMiddleware = (wsUrl: string, wsActions: TWs, auth: boolean): 
             const { type } = action;
             const { start, open, close, error, orders } = wsActions;
             const accessToken = getCookie(ACCESS_TOKEN_ALIAS);
-            console.log(accessToken)
 
             if (type === start && !auth) {
                 ws = new WebSocket(wsUrl);

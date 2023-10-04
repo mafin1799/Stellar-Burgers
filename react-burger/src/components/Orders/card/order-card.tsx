@@ -14,7 +14,6 @@ type TOrderCard = {
 
 export const OrderCard: FC<TOrderCard> = ({ data, path }) => {
     const location = useLocation();
-
     const ingredientsInfo = useSelector((store) => store.ingredientsInfo.ingredients);
     const uniq = data.ingredients.filter((element, index) => {
         return data.ingredients.indexOf(element) === index;

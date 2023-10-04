@@ -44,7 +44,7 @@ export const App = () => {
   const Orders = useSelector((store) => store.wsOrders.orders);
   const AuthOrders = useSelector((store) => store.currentOrder.orders);
 
-
+  console.log(location)
   const ingredients = useSelector(store => store.ingredientsInfo.ingredients);
   return (
     <>
@@ -53,18 +53,23 @@ export const App = () => {
         : <Routes location={background || location}>
           <Route path='/' element={<MainPage />} />
           <Route path='/login' element={<ProtectedRoute guest><div><LoginPage /></div></ProtectedRoute>} />
+
+          <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} >
+            <Route path='' element={<UserInfo />} />
+            <Route path="orders" element={<ProfileOrders reverse path={'/profile/orders'} />} />
+          </Route>
+          <Route path="/profile/orders/:id" element={
+            <ProtectedRoute>
+              <OrderFull start={WS_START_AUTH} close={WS_CLOSED_AUTH} data={AuthOrders!} />
+            </ProtectedRoute>} />
+
           <Route path='/register' element={<ProtectedRoute guest><div><RegistrationPage /></div></ProtectedRoute>} />
           <Route path='/forgot-password' element={<ProtectedRoute guest><div><ForgotPasswordPage /></div></ProtectedRoute>} />
           <Route path='/reset-password' element={<ProtectedRoute guest><div><ResetPasswordPage /></div></ProtectedRoute>} />
           <Route path='/ingredients/:id' element={<IngredientPage />} />
           <Route path="/feed" element={<FeedPage path='/feed' />} />
           <Route path="/feed/:id" element={<OrderFull start={WS_START} close={WS_CLOSED} data={Orders!} />} />
-          <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} >
-            <Route path='' element={<UserInfo />} />
-            <Route path="orders" element={<ProfileOrders reverse path={'/profile/orders'} />} />
-          </Route>
-          <Route path="/profile/orders/:id" element={<ProtectedRoute><OrderFull start={WS_START_AUTH} close={WS_CLOSED_AUTH} data={AuthOrders!} /></ProtectedRoute>} />
-          <Route path='*' element={<Page404 />} />
+          <Route path='/*' element={<Page404 />} />
         </Routes>
       }
 
@@ -73,13 +78,14 @@ export const App = () => {
           <Route path="/ingredients/:id" element={<Modal onClose={close} title={'Детали ингредиента'}><IngredientDetails data={ingredients} /> </Modal>} />
         </Routes>
       }
-      {Orders && background && <Routes>
-        <Route path="/feed/:id" element={<Modal onClose={close}><OrderInfo modal data={Orders} /></Modal>} />
-      </Routes>
+      {Orders && background &&
+        <Routes>
+          <Route path="/feed/:id" element={<Modal onClose={close}><OrderInfo modal data={Orders} /></Modal>} />
+        </Routes>
       }
       {AuthOrders && background &&
         <Routes>
-          <Route path="/profile/orders/:id" element={<Modal onClose={close}><OrderInfo modal data={AuthOrders} /></Modal>} />
+          <Route path='/profile/orders/:id' element={<Modal onClose={close}><OrderInfo modal data={AuthOrders} /></Modal>} />
         </Routes>
       }
     </>
