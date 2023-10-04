@@ -1,14 +1,13 @@
 import styles from "../../../assets/styles.module.css";
 import { DragIcon, ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../../types/hooks";
 import { deleteIngredient } from "../../../services/actions/ingredients-constructor";
 import { useDrag, useDrop } from "react-dnd";
 import { move } from "../../../services/actions/ingredients-constructor";
-import { TIngredient } from "../../../types/types";
 import { FC } from "react";
-
-export const DraggableElement: FC<{ data: TIngredient}> = ({ data }) => {
+import { TIngredientData } from "../../../types/types";
+export const DraggableElement: FC<TIngredientData> = ({ data }) => {
     const dispatch = useDispatch();
     const { id } = data;
     const ref = useRef<HTMLDivElement>(null)

@@ -23,7 +23,7 @@ const Navigate: FC<{children: React.ReactNode}> = ({ children }) => {
 
 }
 
-const AppHeader = () => {
+export const AppHeader = () => {
     return (
         <div className={style.containerFluid}>
             <NavMenu>
@@ -38,7 +38,7 @@ const AppHeader = () => {
                             </div>
                         )}
                     </NavLink>
-                    <NavLink to='/to404NotFoundPage'>
+                    <NavLink to='/feed'>
                         {({ isActive }) => (
                             <div className="col-md-auto d-flex align-items-center">
                                 <div className={`pt-4 pb-4 pl-5 pr-5 ${style.navCenter}`}>
@@ -70,4 +70,3 @@ const AppHeader = () => {
         </div>
     )
 }
-export default AppHeader;

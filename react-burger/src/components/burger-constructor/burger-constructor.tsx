@@ -15,18 +15,12 @@ import { checkToken } from "../../utils/check-access";
 import { useNavigate } from "react-router-dom";
 import { TIngredient } from "../../types/types";
 
-
-
-
 export const BurgerConstructor = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const [modalVisible, setModalVisible] = React.useState(false)
-
     const _ingredients = useSelector(store => store.ingredientsConstructor.ingredients)
     const _bun = useSelector(store => store.ingredientsConstructor.bun)
-
-
 
     const openModal = () => {
         if (!window.getSelection()?.toString()) {
@@ -36,7 +30,6 @@ export const BurgerConstructor = () => {
     const closeModal = () => {
         setModalVisible(false);
     }
-
 
     const totalCount = useMemo(() => {
         let sum = 0;
@@ -51,11 +44,11 @@ export const BurgerConstructor = () => {
         return sum;
     }, [_ingredients, _bun])
 
-    const ingredientIds = _ingredients.map((elem) => (elem._id));
+    const ingredientIds = _ingredients.map((elem) => (elem._id))
 
     const onOrder = () => {
         if(checkToken()){
-            dispatch(sentOrderRequest(ingredientIds));
+            dispatch(sentOrderRequest([...ingredientIds, _bun!._id, _bun!._id]));
             dispatch(deleteAll())
             openModal();
         }else{
@@ -118,7 +111,6 @@ export const BurgerConstructor = () => {
                     <OrderDetails />
                 </Modal>
             }
-
         </div>
     )
 }

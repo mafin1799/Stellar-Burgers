@@ -11,18 +11,21 @@ export const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const error = useSelector(store => store.auth.authError);
-    const loginHandler = () => {
+    const loginHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         dispatch(sentAuthRequest(email, password, () => navigate('/')));
     }
 
-    
+
     return (
         <div className={styles.centerHV}>
             <div className="text_type_main-medium">Вход</div>
+            <form onSubmit={loginHandler}>
+                <Input type={'email'} placeholder={'E-mail'} extraClass="pt-6" error={error} value={email} errorText={'Ошибка'} onChange={e => setEmail(e.target.value)} />
+                <PasswordInput extraClass="pt-6" name="password" value={password} onChange={e => setPassword(e.target.value)} />
+                <Button htmlType="submit" type="primary" size="large" extraClass="mt-6">Войти</Button>
+            </form>
 
-            <Input type={'email'} placeholder={'E-mail'} extraClass="pt-6" error={error} value={email} errorText={'Ошибка'} onChange={e => setEmail(e.target.value)} />
-            <PasswordInput extraClass="pt-6"  value={password} onChange={e => setPassword(e.target.value)} />
-            <Button htmlType="button" type="primary" onClick={loginHandler} size="large" extraClass="mt-6">Войти</Button>
 
             <span className="mt-20 text_color_inactive text_type_main-default">
                 Вы - новый пользователь?

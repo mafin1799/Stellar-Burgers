@@ -4,16 +4,11 @@ import { useState, useRef, useEffect } from "react";
 import { Menu } from "./components/menu";
 import { TabMenu } from "./components/tab-menu";
 import { useSelector } from '../../types/hooks'
-import React from "react";
-
 
 export const BurgerIngredients = () => {
-
   const ingredients = useSelector(store => store.ingredientsInfo.ingredients)
   const tabOrder = ['bun', 'sauce', 'main']
   const [currentTab, setCurrentTab] = useState('bun');
-
-
 
   const handleScroll = () => {
     const contentGroups = document.querySelectorAll('.group');

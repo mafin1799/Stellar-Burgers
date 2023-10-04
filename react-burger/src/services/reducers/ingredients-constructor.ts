@@ -22,7 +22,6 @@ export const ingredientsConstructorReducer = (state = ingredientsDefault, action
             return { ...state, ingredients: [], bun: null }
         case MOVE:
             {
-                console.log(2938564)
                 const newState = [...state.ingredients];
                 const index1 = state.ingredients.findIndex(item => item.id === String(action.payload.dragId))
                 const index2 = state.ingredients.findIndex(item => item.id === String(action.payload.targetId))

@@ -1,7 +1,6 @@
 import { ACCESS_TOKEN_ALIAS, STELLAR_BERGER_API } from "./const"
 import { checkResponse, fetchWithRefresh } from "./checkResponse"
 import { getCookie } from "./cookies"
-import { type } from "os"
 import { TIngredient } from "../types/types"
 
 type TIngredients = {
@@ -18,15 +17,23 @@ type TOrder = {
   }
 }
 export const getOrderData = (ingredientsId: ReadonlyArray<string>) => {
+
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json;charset=utf-8',
+  };
+
+  const accessToken = getCookie(ACCESS_TOKEN_ALIAS);
+
+  if (accessToken) {
+    headers['authorization'] = accessToken;
+  }
+
   return fetch(`${STELLAR_BERGER_API}/orders`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
+    headers,
     body: JSON.stringify({ ingredients: ingredientsId })
-
   })
-    .then(checkResponse<TOrder>)
+    .then(checkResponse<TOrder>);
 }
 
 export const getPasswordReset = (email: string) => {

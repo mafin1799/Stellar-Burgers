@@ -20,8 +20,6 @@ export const UserInfo = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -36,15 +34,17 @@ export const UserInfo = () => {
             dispatch(sentGetUserInfo())
         }
         if (userInfoSuccess && userInfo) {
-            setEmail(userInfo.email)
-            setName(userInfo.name)
+           
+            setEmail(userInfo.email);
+            setName(userInfo.name);
+          
         }
 
     }, [refresh, userInfoSuccess])
 
-    const submitUserInfo = () => {
-
-        dispatch(sentSetUserInfo(email, name, password))
+    const submitUserInfo = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        dispatch(sentSetUserInfo(email, name, password));
     }
 
     const reset = () => {
@@ -57,37 +57,40 @@ export const UserInfo = () => {
     }
     return (
 
-        <div className="col pt-30">
+        <div className="col pt-30 pl-15">
             {userInfo &&
-                <>
+                <form onSubmit={submitUserInfo}>
                     <Input
                         type={'text'}
+                        name='name'
                         placeholder={'Имя'}
                         value={name}
                         onIconClick={() => setEditName(!editName)}
-                        extraClass="pt-6" icon={'EditIcon'}
+                        extraClass="pt-6 "
+                        icon={'EditIcon'}
                         onChange={e => setName(e.target.value)} />
 
                     <Input
                         type={'email'}
+                        name='email'
                         value={email}
                         placeholder={'E-mail'}
                         onIconClick={() => setEditEmail(!editEmail)}
-                        extraClass="pt-6"
+                        extraClass="pt-6  "
                         icon={'EditIcon'}
                         onChange={e => setEmail(e.target.value)} />
 
                     <PasswordInput
                         value={password}
-
-                        extraClass="pt-6"
+                        name='password'
+                        extraClass="pt-6  "
                         onChange={e => setPassword(e.target.value)} />
 
-                    <div className='row pt-6 pb-15 d-flex justify-content-end'>
+                    <div className='row pt-6 pb-15 fit-content'>
                         <Button type="secondary" htmlType="reset" onClick={reset}>Отмена</Button>
-                        <Button type="primary" htmlType="button" onClick={submitUserInfo}>Сохранить</Button>
+                        <Button type="primary" htmlType="submit" >Сохранить</Button>
                     </div>
-                </>
+                </form>
 
 
             }

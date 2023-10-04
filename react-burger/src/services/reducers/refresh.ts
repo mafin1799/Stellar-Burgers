@@ -1,6 +1,11 @@
 import { REFRESH_REQUEST, REFRESH_SUCCESS, REFRESH_ERROR, TRefreshActions } from "../actions/refresh";
 
-const initRefreshPassword = {
+type TInitRefreshPassword = {
+    refreshRequest: boolean,
+    refreshSuccess: boolean,
+    refreshError: boolean,
+}
+const initRefreshPassword: TInitRefreshPassword = {
     refreshRequest: false,
     refreshSuccess: false,
     refreshError: false,

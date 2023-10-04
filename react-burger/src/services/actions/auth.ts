@@ -20,8 +20,8 @@ export interface IAuthError { readonly type: typeof AUTH_ERROR; };
 export type TAuthActions = IAuthRequest | IAuthSuccess | IAuthError;
 
 export const getAuthRequest = (): IAuthRequest => ({ type: AUTH_REQUEST });
-export const getAuthSuccess = (payload: TAuthSuccess) => ({ type: AUTH_SUCCESS, payload });
-export const getAuthError = () => ({ type: AUTH_ERROR });
+export const getAuthSuccess = (payload: TAuthSuccess): IAuthSuccess => ({ type: AUTH_SUCCESS, payload });
+export const getAuthError = (): IAuthError => ({ type: AUTH_ERROR });
 
 export const sentAuthRequest = (email: string, password: string, goToMain: () => void) => (dispatch: TDispatch) => {
     dispatch(getAuthRequest());

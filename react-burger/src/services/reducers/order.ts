@@ -1,4 +1,4 @@
-import { ORDER_SUCCESS, ORDER_REQUEST, ORDER_ERROR, TOrderActions } from "../actions/order";
+import { ORDER_SUCCESS, ORDER_REQUEST, ORDER_ERROR, TOrderActions, ORDER_CLEAR } from "../actions/order";
 
 type TOrder = {
     orderNumber: number | null,
@@ -21,6 +21,9 @@ export const orderReducer = (state = orderDefault, action: TOrderActions) => {
         }
         case ORDER_ERROR: {
             return { ...state, orderRequest: false, orderError: true }
+        }
+        case ORDER_CLEAR: {
+            return { ...state, orderNumber: null, orderRequest: false, orderError: false }
         }
         default:
             return state

@@ -1,15 +1,18 @@
 import modalStyles from '../../../assets/order-details.module.css';
 import Done from "../../../images/done.png";
 import { useSelector } from '../../../types/hooks';
-import { FC } from 'react'
 
-export const OrderDetails: FC = () => {
+export const OrderDetails = () => {
     const orderNumber = useSelector(store => store.orderInfo.orderNumber)
     return (
         <>
-            <div className={`pt-30 text_type_digits-large ${modalStyles.digitShadow}`}>
-                {orderNumber}
-            </div>
+            {orderNumber === null ? <div className={`pt-30 text_type_main-large ${modalStyles.digitShadow}`}>
+                Загрузка
+            </div> :
+                <div className={`pt-30 text_type_digits-large ${modalStyles.digitShadow}`}>
+                    {orderNumber}
+                </div>
+            }
             <div className="text_type_main-medium pt-8">
                 идентификатор заказа
             </div>
