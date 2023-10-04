@@ -43,8 +43,6 @@ export const App = () => {
 
   const Orders = useSelector((store) => store.wsOrders.orders);
   const AuthOrders = useSelector((store) => store.currentOrder.orders);
-
-  console.log(location)
   const ingredients = useSelector(store => store.ingredientsInfo.ingredients);
   return (
     <>

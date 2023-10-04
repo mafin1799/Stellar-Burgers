@@ -1,7 +1,6 @@
 import { ACCESS_TOKEN_ALIAS, STELLAR_BERGER_API } from "./const"
 import { checkResponse, fetchWithRefresh } from "./checkResponse"
 import { getCookie } from "./cookies"
-import { type } from "os"
 import { TIngredient } from "../types/types"
 
 type TIngredients = {
