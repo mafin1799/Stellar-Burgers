@@ -5,7 +5,7 @@ type IIngredientDefault = {
     bun: TIngredient | null
 }
 
-const ingredientsDefault: IIngredientDefault = {
+export const ingredientsDefault: IIngredientDefault = {
     ingredients: [],
     bun: null
 }
