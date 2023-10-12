@@ -21,7 +21,7 @@ export const LoginPage = () => {
         <div className={styles.centerHV}>
             <div className="text_type_main-medium">Вход</div>
             <form onSubmit={loginHandler}>
-                <Input type={'email'} placeholder={'E-mail'} extraClass="pt-6" error={error} value={email} errorText={'Ошибка'} onChange={e => setEmail(e.target.value)} />
+                <Input type={'email'} placeholder={'E-mail'} name="email" extraClass="pt-6" error={error} value={email} errorText={'Ошибка'} onChange={e => setEmail(e.target.value)} />
                 <PasswordInput extraClass="pt-6" name="password" value={password} onChange={e => setPassword(e.target.value)} />
                 <Button htmlType="submit" type="primary" size="large" extraClass="mt-6">Войти</Button>
             </form>

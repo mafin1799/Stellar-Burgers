@@ -71,7 +71,7 @@ export const BurgerConstructor = () => {
     })
 
     return (
-        <div className={`${styles.col} ${burgerStyles.maxWidth}`} ref={dropTarget}>
+        <div className={`${styles.col} ${burgerStyles.maxWidth}`} ref={dropTarget} id="constructor">
             <div className="mt-25">
             </div>
             {_bun && _ingredients ?

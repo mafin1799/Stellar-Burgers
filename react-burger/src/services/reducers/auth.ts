@@ -1,7 +1,7 @@
 import { TUserInfo } from "../../types/types";
 import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_ERROR, TAuthActions } from "../actions/auth";
 
-type TInitAuth = {
+export type TInitAuth = {
     authRequest: boolean,
     authSuccess: boolean,
     authError: boolean,
@@ -9,7 +9,7 @@ type TInitAuth = {
 }
 
 
-const initAuth: TInitAuth = {
+export const initAuth: TInitAuth = {
     authRequest: false,
     authSuccess: false,
     authError: false,

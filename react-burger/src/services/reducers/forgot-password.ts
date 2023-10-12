@@ -6,7 +6,7 @@ type TInitForgotPassword = {
     forgotError: boolean
 }
 
-const initForgotPassword: TInitForgotPassword = {
+export const initForgotPassword: TInitForgotPassword = {
     forgotRequest: false,
     forgotSuccess: false,
     forgotError: false
